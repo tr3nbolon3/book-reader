@@ -1,6 +1,24 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import "./index.css";
-import App from "./App";
+import { createStore } from "redux"; // TODO: remove from this file
+import { Provider } from "react-redux";
+import { BrowserRouter } from "react-router-dom";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+import { ErrorBoundary } from "@/components/ErrorBoundary";
+import App from "./App";
+import "./index.css";
+
+// import configStore from "./store/configStore";
+
+const store = createStore(); // TODO: replace createStore to configStore
+
+ReactDOM.render(
+  <Provider store={store}>
+    <ErrorBoundary>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ErrorBoundary>
+  </Provider>,
+  document.getElementById("root")
+);
