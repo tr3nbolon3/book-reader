@@ -116,7 +116,7 @@ class PrimarySearchAppBar extends React.Component {
                 <SearchIcon />
               </div>
               <InputBase
-                placeholder="Search…"
+                placeholder="Поиск…"
                 classes={{
                   root: classes.inputRoot,
                   input: classes.inputInput

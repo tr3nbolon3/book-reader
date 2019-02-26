@@ -2,6 +2,7 @@ import * as paths from "./paths";
 import Home from "../screens/Home";
 import Auth from "../screens/Auth";
 import { SignIn, SignUp } from "../screens/Auth/components";
+import Search from "../screens/Search";
 
 export default [
   {
@@ -27,5 +28,11 @@ export default [
     path: paths.signup,
     exact: true,
     component: SignUp
+  },
+  {
+    name: "Search",
+    path: paths.search,
+    exact: true,
+    component: Search
   }
 ];
