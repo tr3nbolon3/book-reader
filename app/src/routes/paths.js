@@ -1,6 +1,6 @@
-export const home = "/";
-export const auth = "/auth";
-export const signup = "/auth/signup";
-export const signin = "/auth/signin";
-export const dahsboard = "/dashboard";
-export const search = "/search";
+export const HOME = "/";
+export const AUTH = "/auth";
+export const SIGN_UP = "/auth/signup";
+export const SIGN_IN = "/auth/signin";
+export const DASHBOARD = "/dashboard";
+export const SEARCH = "/search";
