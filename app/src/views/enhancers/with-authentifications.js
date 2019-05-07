@@ -3,13 +3,13 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { Redirect } from "react-router-dom";
 
-export default function withAuthentication( WrappedComponent ) {
-    const WithAuthentication = ( props ) => {
-        if ( !props.isAuthenticated ) {
+export default function withAuthentication(WrappedComponent) {
+    const WithAuthentication = (props) => {
+        if (!props.isAuthenticated) {
             return <Redirect to="/login" />;
         }
 
-        return ( <WrappedComponent { ...props } /> );
+        return <WrappedComponent { ...props } />;
     };
 
     const { bool } = PropTypes;
@@ -17,9 +17,9 @@ export default function withAuthentication( WrappedComponent ) {
         isAuthenticated: bool.isRequired,
     };
 
-    const mapStateToProps = ( state ) => ( {
+    const mapStateToProps = (state) => ({
         isAuthenticated: state.session.isAuthenticated,
-    } );
+    });
 
-    return connect( mapStateToProps )( WithAuthentication );
+    return connect(mapStateToProps)(WithAuthentication);
 }

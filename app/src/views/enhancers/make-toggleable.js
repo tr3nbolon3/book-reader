@@ -1,12 +1,9 @@
 import React from 'react';
-
-function getDisplayName(WrappedComponent) {
-  return WrappedComponent.displayName || WrappedComponent.name || 'Component';
-}
+import { getDisplayName } from '../../utils'
 
 function makeToggleable(Component) {
   return class extends React.Component {
-    static displayName = `Toggle(${getDisplayName(Component)})`;
+    static displayName = `ToggleableHOC(${getDisplayName(Component)})`;
 
     constructor(props) {
       super(props);

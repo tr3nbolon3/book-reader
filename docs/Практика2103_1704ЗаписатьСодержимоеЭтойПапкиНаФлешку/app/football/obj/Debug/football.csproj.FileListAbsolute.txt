@@ -1,0 +1,11 @@
+A:\projects\college\practice2703_1804\football\obj\Debug\football.csprojAssemblyReference.cache
+A:\projects\college\practice2703_1804\football\obj\Debug\football.App.resources
+A:\projects\college\practice2703_1804\football\obj\Debug\football.Auth.resources
+A:\projects\college\practice2703_1804\football\obj\Debug\football.Properties.Resources.resources
+A:\projects\college\practice2703_1804\football\obj\Debug\football.csproj.GenerateResource.cache
+A:\projects\college\practice2703_1804\football\obj\Debug\football.csproj.CoreCompileInputs.cache
+A:\projects\college\practice2703_1804\football\bin\Debug\football.exe.config
+A:\projects\college\practice2703_1804\football\bin\Debug\football.exe
+A:\projects\college\practice2703_1804\football\bin\Debug\football.pdb
+A:\projects\college\practice2703_1804\football\obj\Debug\football.exe
+A:\projects\college\practice2703_1804\football\obj\Debug\football.pdb
