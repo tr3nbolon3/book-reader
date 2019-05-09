@@ -1,0 +1,26 @@
+import React from 'react';
+import PropTypes from 'prop-types';
+
+function {name}() {
+  return (
+    <div>{name}</div>
+  );
+}
+
+{name}.propTypes = {
+  someProp: PropTypes.string.isRequired,
+}
+
+// class {name} extends React.Component {
+//   static propTypes = {
+//     someProp: PropTypes.string.isRequired,
+//   }
+//
+//   render() {
+//     return (
+//       <div>{name}</div>
+//     );
+//   }
+// }
+
+export default {name};

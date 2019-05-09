@@ -3,10 +3,12 @@ const containerCreator = require('./containerCreator');
 const uiCreator = require('./uiCreator');
 const pageCreator = require('./pageCreator');
 const duckCreator = require('./duckCreator');
+const layoutCreator = require('./layoutCreator');
 
 const creators = {
   '--component': componentCreator,
   '--container': containerCreator,
+  '--layout': layoutCreator,
   '--duck': duckCreator,
   '--page': pageCreator,
   '--ui': uiCreator,
