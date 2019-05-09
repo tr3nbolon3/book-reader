@@ -3,4 +3,7 @@ module.exports = {
     'eslint-config-purrweb-react',
     'plugin:react/recommended'
   ],
+  env: {
+    browser: true
+  },
 };
