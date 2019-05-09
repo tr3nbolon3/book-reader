@@ -2,16 +2,14 @@ const componentCreator = require('./componentCreator');
 const containerCreator = require('./containerCreator');
 const uiCreator = require('./uiCreator');
 const pageCreator = require('./pageCreator');
+const duckCreator = require('./duckCreator');
 
 const creators = {
   '--component': componentCreator,
   '--container': containerCreator,
+  '--duck': duckCreator,
   '--page': pageCreator,
   '--ui': uiCreator,
-  '-u': uiCreator,
-  '-p': componentCreator,
-  '-c': componentCreator,
-  '-C': containerCreator,
 };
 
 module.exports = type => {
