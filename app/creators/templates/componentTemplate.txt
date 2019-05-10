@@ -1,26 +1,38 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-// function {name}() {
-//   return (
-//     <div>{name}</div>
-//   );
-// }
-//
-// {name}.propTypes = {
-//   someProp: PropTypes.string.isRequired,
+// class {name} extends React.Component {
+//   static propTypes = {
+//     name: PropTypes.string.isRequired,
+//   };
+
+//   static defaultProps = {
+//     name: {name},
+//   };
+
+//   render() {
+//     return (
+//       <div>
+//         <p>{this.props.name}</p>
+//       </div>
+//     );
+//   }
 // }
 
-class {name} extends React.Component {
-  static propTypes = {
-    someProp: PropTypes.string.isRequired,
-  }
-
-  render() {
-    return (
-      <div>{name}</div>
-    );
-  }
+function {name}(props) {
+  return (
+    <div>
+      <p>{props.name}</p>
+    </div>
+  );
 }
+
+{name}.defaultProps = {
+  name: {name},
+};
+
+{name}.propTypes = {
+  name: PropTypes.string.isRequired,
+};
 
 export default {name};
