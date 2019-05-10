@@ -1,5 +1,5 @@
 import React from 'react';
-import { getDisplayName } from '../../utils'
+import { getDisplayName } from '../../utils';
 
 function makeToggleable(Component) {
   return class extends React.Component {
