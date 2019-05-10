@@ -29,9 +29,9 @@
     "reselect": "^4.0.0"
   },
   "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test",
+    "start": "cra-alias start",
+    "build": "cra-alias build",
+    "test": "cra-alias test",
     "eject": "react-scripts eject",
     "lint": "eslint src/**/*.js src/**/*.jsx"
   },
@@ -60,6 +60,7 @@
     "not op_mini all"
   ],
   "devDependencies": {
+    "cra-alias": "^4.13.11",
     "eslint-config-purrweb-react": "^1.0.8",
     "husky": "^1.1.2",
     "lint-staged": "^7.3.0",

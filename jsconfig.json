@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "baseUrl": "src",
+    "paths": {
+      "@src/*": ["./*", "./"],
+      "@ducks/*": ["./store/ducks/*"],
+      "@utils/*": ["./utils/*"],
+      "@components/*": ["./views/components/*"],
+      "@enhancers/*": ["./views/components/*"],
+      "@layouts/*": ["./views/layouts/*"],
+      "@pages/*": ["./views/pages/*"],
+      "@prop-types/*": ["./views/prop-types/*"],
+      "@UI/*": ["./views/UI/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

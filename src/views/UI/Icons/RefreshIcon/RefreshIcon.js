@@ -1,5 +1,5 @@
 import React from 'react';
-import MyPropTypes from '../../../../my-prop-types';
+import MyPropTypes from '../../../prop-types';
 
 function RefreshIcon(props) {
   return (
