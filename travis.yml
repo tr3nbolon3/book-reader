@@ -4,3 +4,8 @@ node_js:
 
 script:
   - make lint
+
+branches:
+  only:
+  - master
+  - dev
