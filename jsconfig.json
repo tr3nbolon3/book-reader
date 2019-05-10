@@ -1,17 +1,17 @@
 {
   "compilerOptions": {
-    "baseUrl": ".",
+    "baseUrl": "src",
     "paths": {
-      "@src/*": ["./src/*", "./src/"],
-      "@ducks/*": ["./src/store/ducks/*"],
-      "@utils/*": ["./src/utils/*"],
-      "@utils": ["./src/utils"],
-      "@components/*": ["./src/views/components/*"],
-      "@enhancers/*": ["./src/views/components/*"],
-      "@layouts/*": ["./src/views/layouts/*"],
-      "@pages/*": ["./src/views/pages/*"],
-      "@prop-types/*": ["./src/views/prop-types/*"],
-      "@UI/*": ["./src/views/UI/*"]
+      "@src/*": ["./*", "./"],
+      "@ducks/*": ["./store/ducks/*"],
+      "@utils/*": ["./utils/*"],
+      "@utils": ["./utils"],
+      "@components/*": ["./views/components/*"],
+      "@enhancers/*": ["./views/components/*"],
+      "@layouts/*": ["./views/layouts/*"],
+      "@pages/*": ["./views/pages/*"],
+      "@prop-types/*": ["./views/prop-types/*"],
+      "@UI/*": ["./views/UI/*"]
     }
   },
   "exclude": ["node_modules"]

@@ -6,6 +6,7 @@ import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
+import RefreshIcon from '@UI/Icons/RefreshIcon';
 
 class ErrorBoundary extends Component {
   state = {
@@ -32,7 +33,7 @@ class ErrorBoundary extends Component {
       <DialogActions>
         <Button onClick={this.handleReloadApp} color="primary" autoFocus>
           Презагрузить приложение
-          {/* <RefreshIcon /> */}
+          <RefreshIcon />
         </Button>
       </DialogActions>
     </Dialog>
