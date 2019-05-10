@@ -2,72 +2,77 @@ import { combineReducers } from 'redux';
 import { handleActions, combineActions } from 'redux-actions';
 import * as userActions from './actions';
 
-const isSignedIn = handleActions({
-  [combineActions(
-    userActions.signInSuccess,
-    userActions.signUpSuccess,
-  )]() {
-    return true;
+const isSignedIn = handleActions(
+  {
+    [combineActions(userActions.signInSuccess, userActions.signUpSuccess)]() {
+      return true;
+    },
+    [combineActions(userActions.validateTokenFailure, userActions.signOutSuccess)]() {
+      return false;
+    },
   },
-  [combineActions(
-    userActions.validateTokenFailure,
-    userActions.signOutSuccess,
-  )]() {
-    return false;
-  },
-}, false);
+  false,
+);
 
-const signingInState = handleActions({
-  [userActions.signInRequest]() {
-    return 'requested';
+const signingInState = handleActions(
+  {
+    [userActions.signInRequest]() {
+      return 'requested';
+    },
+    [userActions.signInSuccess]() {
+      return 'success';
+    },
+    [userActions.signInFailure]() {
+      return 'failed';
+    },
   },
-  [userActions.signInSuccess]() {
-    return 'success';
-  },
-  [userActions.signInFailure]() {
-    return 'failed';
-  },
-}, 'none');
+  'none',
+);
 
-const signingUpState = handleActions({
-  [userActions.signUpRequest]() {
-    return 'requested';
+const signingUpState = handleActions(
+  {
+    [userActions.signUpRequest]() {
+      return 'requested';
+    },
+    [userActions.signUpSuccess]() {
+      return 'success';
+    },
+    [userActions.signUpFailure]() {
+      return 'failed';
+    },
   },
-  [userActions.signUpSuccess]() {
-    return 'success';
-  },
-  [userActions.signUpFailure]() {
-    return 'failed';
-  },
-}, 'none');
+  'none',
+);
 
-const validationTokenState = handleActions({
-  [userActions.validateTokenRequest]() {
-    return 'requested';
+const validationTokenState = handleActions(
+  {
+    [userActions.validateTokenRequest]() {
+      return 'requested';
+    },
+    [userActions.validateTokenSuccess]() {
+      return 'success';
+    },
+    [userActions.validateTokenFailure]() {
+      return 'failed';
+    },
   },
-  [userActions.validateTokenSuccess]() {
-    return 'success';
-  },
-  [userActions.validateTokenFailure]() {
-    return 'failed';
-  },
-}, 'none');
+  'none',
+);
 
-const userData = handleActions({
-  [combineActions(
-    userActions.signInSuccess,
-    userActions.signUpSuccess,
-    userActions.validateTokenSuccess,
-  )](
-    _,
-    { payload: newUserData },
-  ) {
-    return newUserData;
+const userData = handleActions(
+  {
+    [combineActions(userActions.signInSuccess, userActions.signUpSuccess, userActions.validateTokenSuccess)](
+      _,
+      { payload: newUserData },
+    ) {
+      return newUserData;
+    },
+    [userActions.signOutSuccess]() {
+      return {};
+    },
   },
-  [userActions.signOutSuccess]() {
-    return {};
-  },
-}, {});
+  {},
+);
 
 export default combineReducers({
   isSignedIn,
