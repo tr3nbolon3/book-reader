@@ -1,6 +1,10 @@
-export const HOME = "/";
-export const AUTH = "/auth";
-export const SIGN_UP = "/auth/signup";
-export const SIGN_IN = "/auth/signin";
-export const DASHBOARD = "/dashboard";
-export const SEARCH = "/search";
+export const HOME = '/';
+export const AUTH = '/auth';
+export const SIGN_UP = '/auth/sign-up';
+export const SIGN_IN = '/auth/sign-in';
+export const LANDING = '/landing';
+export const DASHBOARD = '/dashboard';
+export const SUBSCRIBE = '/subscribe';
+export const BOOK_CATALOG = '/book-catalog';
+export const BOOK = '/book/:id';
+export const SEARCH = '/search';
