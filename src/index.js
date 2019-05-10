@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import { createStore } from 'redux'; // TODO: remove from this file
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
-// import ErrorBoundary from '~/views/components/ErrorBoundary';
+import ErrorBoundary from '@components/ErrorBoundary';
 import App from './App';
 import './index.css';
 
@@ -12,11 +12,11 @@ const store = createStore(state => state); // TODO: replace createStore to confi
 
 ReactDOM.render(
   <Provider store={store}>
-    {/* <ErrorBoundary> */}
-    <BrowserRouter>
-      <App />
-    </BrowserRouter>
-    {/* </ErrorBoundary> */}
+    <ErrorBoundary>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </ErrorBoundary>
   </Provider>,
   document.getElementById('root'),
 );

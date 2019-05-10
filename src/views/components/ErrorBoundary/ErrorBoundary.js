@@ -7,10 +7,11 @@ import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import RefreshIcon from '@UI/Icons/RefreshIcon';
+// import Link from '@UI/Link';
 
 class ErrorBoundary extends Component {
   state = {
-    hasError: false,
+    hasError: true,
   };
 
   componentDidCatch(error, info) {
