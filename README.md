@@ -1,3 +1,5 @@
+# Diploma app
+
 [![Build Status](https://travis-ci.com/Haliont/diploma-app.svg?branch=master)](https://travis-ci.com/Haliont/diploma-app)
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/1f220241656ff1acdd7e/maintainability)](https://codeclimate.com/github/Haliont/diploma-app/maintainability)
