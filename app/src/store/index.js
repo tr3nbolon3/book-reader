@@ -7,14 +7,8 @@ const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const middleware = [thunk];
 
-const enhancers = composeEnhancers(
-  applyMiddleware(...middleware),
-);
+const enhancers = composeEnhancers(applyMiddleware(...middleware));
 
 export default function configureState(preloadState = {}) {
-  return createStore(
-    rootReducer,
-    preloadState,
-    enhancers,
-  );
+  return createStore(rootReducer, preloadState, enhancers);
 }
