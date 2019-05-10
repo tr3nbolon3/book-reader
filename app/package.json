@@ -38,6 +38,21 @@
   "eslintConfig": {
     "extends": "react-app"
   },
+  "lint-staged": {
+    "*.js": [
+      "eslint --fix",
+      "git add"
+    ],
+    "*.{json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
   "browserslist": [
     ">0.2%",
     "not dead",
@@ -45,6 +60,9 @@
     "not op_mini all"
   ],
   "devDependencies": {
-    "eslint-config-purrweb-react": "^1.0.8"
+    "eslint-config-purrweb-react": "^1.0.8",
+    "husky": "^1.1.2",
+    "lint-staged": "^7.3.0",
+    "prettier": "^1.14.3"
   }
 }
