@@ -1,8 +1,6 @@
-import { combineReducers } from "redux";
-import skills from "./skills/reducer";
-import user from "./user/reducer";
-import find from "./find/reducer";
+import { combineReducers } from 'redux';
+import app from './ducks/app/appReducer';
 
 export default combineReducers({
-  user
+  app,
 });
