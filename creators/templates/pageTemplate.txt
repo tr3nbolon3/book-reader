@@ -10,7 +10,7 @@ import * as appActions from '@ducks/app/appActions';
 //   };
 
 //   static defaultProps = {
-//     name: {name},
+//     name: '{name}',
 //   };
 
 //   render() {
@@ -31,7 +31,7 @@ function {name}(props) {
 }
 
 {name}.defaultProps = {
-  name: {name},
+  name: '{name}',
 };
 
 {name}.propTypes = {
