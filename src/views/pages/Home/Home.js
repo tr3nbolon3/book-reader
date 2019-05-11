@@ -4,13 +4,13 @@ import { connect } from 'react-redux';
 // import * as appSelectors from '@ducks/app/appSelectors';
 import * as appActions from '@ducks/app/appActions';
 
-// class Subscribe extends React.Component {
+// class Home extends React.Component {
 //   static propTypes = {
 //     name: PropTypes.string.isRequired,
 //   };
 
 //   static defaultProps = {
-//     name: 'Subscribe',
+//     name: 'Home',
 //   };
 
 //   render() {
@@ -22,7 +22,7 @@ import * as appActions from '@ducks/app/appActions';
 //   }
 // }
 
-function Subscribe(props) {
+function Home(props) {
   return (
     <div>
       <p>{props.name}</p>
@@ -30,11 +30,11 @@ function Subscribe(props) {
   );
 }
 
-Subscribe.defaultProps = {
-  name: 'Subscribe',
+Home.defaultProps = {
+  name: 'Home',
 };
 
-Subscribe.propTypes = {
+Home.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
@@ -47,4 +47,4 @@ const mapDispatchToProps = { ...appActions };
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Subscribe);
+)(Home);

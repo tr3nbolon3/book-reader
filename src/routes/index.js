@@ -1,38 +1,42 @@
-import * as paths from "./paths";
-import Home from "../screens/Home";
-import Auth from "../screens/Auth";
-import { SignIn, SignUp } from "../screens/Auth/components";
-import Search from "../screens/Search";
+import Book from '@pages/Book';
+import Home from '@pages/Home';
+import Library from '@pages/Library';
+import Reader from '@pages/Reader';
+import Subscribe from '@pages/Subscribe';
+import UserProfile from '@pages/UserProfile';
+
+import * as paths from './paths';
 
 export default [
   {
-    name: "Home",
-    path: paths.home,
+    name: 'Home',
+    path: paths.HOME,
     exact: true,
-    component: Home
+    component: Home,
   },
   {
-    name: "Auth",
-    path: paths.auth,
-    exact: true,
-    component: Auth
+    name: 'Library',
+    path: paths.LIBRARY,
+    component: Library,
   },
   {
-    name: "SignIn",
-    path: paths.signin,
-    exact: true,
-    component: SignIn
+    name: 'Book',
+    path: paths.BOOK,
+    component: Book,
   },
   {
-    name: "SignUp",
-    path: paths.signup,
-    exact: true,
-    component: SignUp
+    name: 'Subscribe',
+    path: paths.SUBSCRIBE,
+    component: Subscribe,
   },
   {
-    name: "Search",
-    path: paths.search,
-    exact: true,
-    component: Search
-  }
+    name: 'Reader',
+    path: paths.READER,
+    component: Reader,
+  },
+  {
+    name: 'UserProfile',
+    path: paths.USER_PROFILE,
+    component: UserProfile,
+  },
 ];

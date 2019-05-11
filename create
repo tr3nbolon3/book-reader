@@ -2,6 +2,10 @@
 const getCreator = require('./creators');
 
 const type = process.argv[2];
-const name = process.argv[3];
+const fileNames = process.argv[3].split(',');
+
 const create = getCreator(type);
-create(name);
+
+fileNames.forEach(fileName => {
+  create(fileName);
+});

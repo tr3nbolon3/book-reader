@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ePub from 'epubjs';
+import { CircularProgress } from '@material-ui/core';
 
 class Reader extends Component {
   state = {
+    hasDelay: true, // for loading imitation
     isBookReady: false,
   };
 
@@ -16,6 +18,9 @@ class Reader extends Component {
     this.bookRendition.display();
 
     this.book.ready.then(() => this.setState({ isBookReady: true }));
+    setTimeout(() => {
+      this.setState({ hasDelay: false });
+    }, 1000);
   }
 
   handleNext = () => this.bookRendition.next();
@@ -23,25 +28,31 @@ class Reader extends Component {
   handlePrev = () => this.bookRendition.prev();
 
   render() {
-    const { isBookReady } = this.state;
+    const { isBookReady, hasDelay } = this.state;
     const { handleNext, handlePrev } = this;
+
+    const isShowProgress = !isBookReady || hasDelay;
 
     return (
       <div>
-        <div id="bookViewer" />
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-          }}
-        >
-          <button onClick={handlePrev} disabled={!isBookReady}>
-            ⇦
-          </button>
-          <button onClick={handleNext} disabled={!isBookReady}>
-            ⇨
-          </button>
+        {/* BOOK VIEWER CONTAINER */}
+        <div style={isShowProgress ? { visibility: 'hidden', opacity: 0 } : {}}>
+          <div id="bookViewer" />
+          <div
+            style={{
+              display: 'flex',
+              justifyContent: 'space-between',
+            }}
+          >
+            <button onClick={handlePrev} disabled={!isBookReady}>
+              ⇦
+            </button>
+            <button onClick={handleNext} disabled={!isBookReady}>
+              ⇨
+            </button>
+          </div>
         </div>
+        {isShowProgress && <CircularProgress />}
       </div>
     );
   }

@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+// import * as appSelectors from '@ducks/app/appSelectors';
+import * as appActions from '@ducks/app/appActions';
 
 // class UserProfile extends React.Component {
 //   static propTypes = {
@@ -7,7 +10,7 @@ import PropTypes from 'prop-types';
 //   };
 
 //   static defaultProps = {
-//     name: UserProfile,
+//     name: 'UserProfile',
 //   };
 
 //   render() {
@@ -28,11 +31,20 @@ function UserProfile(props) {
 }
 
 UserProfile.defaultProps = {
-  name: UserProfile,
+  name: 'UserProfile',
 };
 
 UserProfile.propTypes = {
   name: PropTypes.string.isRequired,
 };
 
-export default UserProfile;
+const mapStateToProps = state => ({
+  ...state,
+});
+
+const mapDispatchToProps = { ...appActions };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(UserProfile);

@@ -6,6 +6,7 @@ module.exports = function override(config) {
     ...config.resolve.alias,
     '@src': path.resolve(__dirname, 'src/'),
     '@components': path.resolve(__dirname, 'src/views/components/'),
+    '@routes': path.resolve(__dirname, 'src/routes/'),
     '@ducks': path.resolve(__dirname, 'src/store/ducks/'),
     '@utils': path.resolve(__dirname, 'src/utils/'),
     '@enhancers': path.resolve(__dirname, 'src/views/enhancers/'),

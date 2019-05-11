@@ -1,5 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+// import * as appSelectors from '@ducks/app/appSelectors';
+import * as appActions from '@ducks/app/appActions';
 
 // class Book extends React.Component {
 //   static propTypes = {
@@ -7,7 +10,7 @@ import PropTypes from 'prop-types';
 //   };
 
 //   static defaultProps = {
-//     name: Book,
+//     name: 'Book',
 //   };
 
 //   render() {
@@ -22,17 +25,38 @@ import PropTypes from 'prop-types';
 function Book(props) {
   return (
     <div>
-      <p>{props.name}</p>
+      <p>
+        {props.name} {props.id}
+      </p>
     </div>
   );
 }
 
 Book.defaultProps = {
-  name: Book,
+  name: 'Book',
 };
 
 Book.propTypes = {
+  id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
 };
 
-export default Book;
+const mapStateToProps = (state, ownProps) => {
+  const {
+    match: {
+      params: { id },
+    },
+  } = ownProps;
+
+  return {
+    ...state,
+    id: Number(id),
+  };
+};
+
+const mapDispatchToProps = { ...appActions };
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Book);

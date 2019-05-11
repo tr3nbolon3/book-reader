@@ -13,6 +13,7 @@ module.exports = {
         map: [
           ["@src", "./src"],
           ["@ducks", "./src/store/ducks"],
+          ["@routes", "./src/routes/"],
           ["@utils", "./src/utils"],
           ["@components", "./src/views/components"],
           ["@enhancers", "./src/views/components"],
