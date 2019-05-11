@@ -1,18 +1,17 @@
 {
   "compilerOptions": {
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "@src/*": ["./*", "./"],
-      "@ducks/*": ["./store/ducks/*"],
-      "@routes/*": ["./routes/*"],
-      "@utils/*": ["./utils/*"],
-      "@utils": ["./utils"],
-      "@components/*": ["./views/components/*"],
-      "@enhancers/*": ["./views/enhancers/*"],
-      "@layouts/*": ["./views/layouts/*"],
-      "@pages/*": ["./views/pages/*"],
-      "@prop-types/*": ["./views/prop-types/*"],
-      "@UI/*": ["./views/UI/*"]
+      "@UI/*": ["./src/views/UI/*"],
+      "@components/*": ["./src/views/components/*"],
+      "@enhancers/*": ["./src/views/enhancers/*"],
+      "@layouts/*": ["./src/views/layouts/*"],
+      "@pages/*": ["./src/views/pages/*"],
+      "@prop-types/*": ["./src/views/prop-types/*"],
+      "@ducks/*": ["./src/store/ducks/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@src/*": ["./src/*", "./src"]
     }
   },
   "exclude": ["node_modules"]
