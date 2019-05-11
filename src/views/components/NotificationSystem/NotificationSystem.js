@@ -1,19 +1,43 @@
-// import React, { Component } from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
+import { getAppNotification } from '@ducks/app/appSelectors';
 
-// class NorificationSytem extends Component {
-//   // TODO: implement notifiction system with level notification (error, success, etc)
-//   render() {
-//     return null;
-//   }
-// }
+const textsMap = {
+  success: 'Success!',
+  error: 'Error!',
+  warn: 'Warning!',
+  info: 'Info!',
+  default: 'Default',
+};
 
-function NotificationSystem() {
-  return null;
+class NotificationSystem extends Component {
+  componentDidUpdate = () => {
+    const {
+      notification: { type, message },
+    } = this.props;
+
+    const text = message || textsMap[type];
+    if (type === 'default') {
+      toast(text);
+    } else {
+      toast[type](text);
+    }
+  };
+
+  // eslint-disable-next-line
+  render() {
+    return <ToastContainer />;
+  }
 }
 
 NotificationSystem.propTypes = {
-  children: PropTypes.any,
+  notification: PropTypes.shape({
+    type: PropTypes.oneOf(['success', 'error', 'warn', 'info', 'default']),
+    message: PropTypes.string,
+  }),
 };
 
-export default NotificationSystem;
+export default connect(state => ({ notification: getAppNotification(state) }))(NotificationSystem);

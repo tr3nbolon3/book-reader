@@ -1,8 +1,8 @@
 import { createSelector } from 'reselect';
 
-export const getAppPart = state => state.app.appPart;
+export const getAppNotification = state => state.app.notification;
 
-export const getAppPartFiltered = createSelector(
-  getAppPart,
-  appPart => appPart.filter(Boolean),
+export const someSelector = createSelector(
+  getAppNotification,
+  appNotification => appNotification,
 );

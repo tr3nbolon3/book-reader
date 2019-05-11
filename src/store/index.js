@@ -9,6 +9,6 @@ const middleware = [thunk];
 
 const enhancers = composeEnhancers(applyMiddleware(...middleware));
 
-export default function configureState(preloadState = {}) {
+export default function configureStore(preloadState = {}) {
   return createStore(rootReducer, preloadState, enhancers);
 }

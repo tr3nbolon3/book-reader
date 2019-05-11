@@ -1,2 +1,2 @@
-export const FIRST_ACTION = 'app/FIRST_ACTION';
+export const SHOW_NOTIFICATION = 'app/SHOW_NOTIFICATION';
 export const SECOND_ACTION = 'app/SECOND_ACTION';

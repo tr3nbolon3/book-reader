@@ -1,5 +1,7 @@
 import { createAction } from 'redux-actions';
 import * as appTypes from './appTypes';
 
-export const firstAction = createAction(appTypes.FIRST_ACTION);
+// payload - {Object} - { type, message }
+export const showNotification = createAction(appTypes.SHOW_NOTIFICATION);
+
 export const secondAction = createAction(appTypes.SECOND_ACTION);
