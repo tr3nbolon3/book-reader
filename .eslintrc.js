@@ -16,7 +16,7 @@ module.exports = {
           ["@routes", "./src/routes/"],
           ["@utils", "./src/utils"],
           ["@components", "./src/views/components"],
-          ["@enhancers", "./src/views/components"],
+          ["@enhancers", "./src/views/enhancers"],
           ["@layouts", "./src/views/layouts"],
           ["@pages", "./src/views/pages"],
           ["@prop-types", "./src/views/prop-types"],

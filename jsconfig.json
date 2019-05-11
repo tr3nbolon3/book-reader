@@ -8,7 +8,7 @@
       "@utils/*": ["./utils/*"],
       "@utils": ["./utils"],
       "@components/*": ["./views/components/*"],
-      "@enhancers/*": ["./views/components/*"],
+      "@enhancers/*": ["./views/enhancers/*"],
       "@layouts/*": ["./views/layouts/*"],
       "@pages/*": ["./views/pages/*"],
       "@prop-types/*": ["./views/prop-types/*"],
