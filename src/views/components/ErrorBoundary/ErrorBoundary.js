@@ -11,7 +11,7 @@ import RefreshIcon from '@UI/Icons/RefreshIcon';
 
 class ErrorBoundary extends Component {
   state = {
-    hasError: true,
+    hasError: false,
   };
 
   componentDidCatch(error, info) {
@@ -20,21 +20,20 @@ class ErrorBoundary extends Component {
     console.log(info);
   }
 
-  handleReloadApp = () => {};
+  handleReloadApp = () => window.location.reload(true);
 
   renderErrorDialog = () => (
     <Dialog open aria-labelledby="alert-dialog-title" aria-describedby="alert-dialog-description">
-      <DialogTitle id="alert-dialog-title">{"Use Google's location service?"}</DialogTitle>
+      <DialogTitle id="alert-dialog-title">Упс, что-то пошло не так</DialogTitle>
       <DialogContent>
         <DialogContentText id="alert-dialog-description">
-          Let Google help apps determine location. This means sending anonymous location data to Google, even when no
-          apps are running.
+          В работе приложения произошла ошибка, пожалуйста, перезагрузите страницу.
         </DialogContentText>
       </DialogContent>
       <DialogActions>
         <Button onClick={this.handleReloadApp} color="primary" autoFocus>
           Презагрузить приложение
-          <RefreshIcon />
+          <RefreshIcon fill="#3f51b5" />
         </Button>
       </DialogActions>
     </Dialog>
