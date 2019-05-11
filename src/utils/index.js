@@ -8,3 +8,7 @@ export function getDisplayName(component) {
   return component.displayName || component.name || 'Component';
 }
 
+export const cleanObject = object =>
+  Object.keys(object)
+    .filter(key => !!object[key])
+    .reduce((acc, key) => ({ ...acc, [key]: object[key] }), {});
