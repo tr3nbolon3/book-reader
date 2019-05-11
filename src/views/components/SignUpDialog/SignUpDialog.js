@@ -4,38 +4,16 @@ import { connect } from 'react-redux';
 import { getIsOpenSignUpDialog } from '@ducks/app/appSelectors';
 import * as appActions from '@ducks/app/appActions';
 import { Dialog } from '@material-ui/core';
+// import SignUp from '@components/Auth/SignUp';
 
-// class SignUpDialog extends React.Component {
-//   static propTypes = {
-//     name: PropTypes.string.isRequired,
-//   };
-
-//   static defaultProps = {
-//     name: 'SignUpDialog',
-//   };
-
-//   render() {
-//     return (
-//       <div>
-//         <p>{this.props.name}</p>
-//       </div>
-//     );
-//   }
-// }
-
-function SignUpDialog({ name, isOpen, closeSignUpDialog }) {
+function SignUpDialog({ isOpen, closeSignUpDialog }) {
   return (
     <Dialog open={isOpen} onClose={closeSignUpDialog}>
-      <div>
-        <p>{name}</p>
-      </div>
+      {/* <SignUp /> */}
+      <div>hel</div>
     </Dialog>
   );
 }
-
-SignUpDialog.defaultProps = {
-  name: 'SignUpDialog',
-};
 
 SignUpDialog.propTypes = {
   name: PropTypes.string,

@@ -1,0 +1,11 @@
+.container {
+  margin-bottom: 8px;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+}
+
+.textField {
+  width: 100%;
+}
