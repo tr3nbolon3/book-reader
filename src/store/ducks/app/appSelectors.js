@@ -1,8 +1,6 @@
-import { createSelector } from 'reselect';
+// import { createSelector } from 'reselect';
 
 export const getAppNotification = state => state.app.notification;
 
-export const someSelector = createSelector(
-  getAppNotification,
-  appNotification => appNotification,
-);
+export const getIsOpenSignUpDialog = state => state.app.isOpenSignUpDialog;
+export const getIsOpenSignInDialog = state => state.app.isOpenSignInDialog;

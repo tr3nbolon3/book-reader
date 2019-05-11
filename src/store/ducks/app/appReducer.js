@@ -11,6 +11,32 @@ const notification = handleActions(
   {},
 );
 
+const isOpenSignUpDialog = handleActions(
+  {
+    [appActions.openSignUpDialog]() {
+      return true;
+    },
+    [appActions.closeSignUpDialog]() {
+      return false;
+    },
+  },
+  false,
+);
+
+const isOpenSignInDialog = handleActions(
+  {
+    [appActions.openSignInDialog]() {
+      return true;
+    },
+    [appActions.closeSignInDialog]() {
+      return false;
+    },
+  },
+  false,
+);
+
 export default combineReducers({
   notification,
+  isOpenSignUpDialog,
+  isOpenSignInDialog,
 });

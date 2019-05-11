@@ -1,6 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import * as appActions from '@ducks/app/appActions';
 
 import routes from '@routes';
 import * as paths from '@routes/paths';
@@ -24,7 +27,7 @@ import { Button } from '@material-ui/core';
 //   }
 // }
 
-function Header() {
+function Header({ openSignInDialog, openSignUpDialog }) {
   return (
     <div>
       {routes.map(({ name, path }) => (
@@ -32,6 +35,8 @@ function Header() {
           {path === paths.BOOK ? <Link to="/books/1">{name}</Link> : <Link to={path}>{name}</Link>}
         </Button>
       ))}
+      <Button onClick={openSignInDialog}>Open sign in dialog</Button>
+      <Button onClick={openSignUpDialog}>Open sign up dialog</Button>
     </div>
   );
 }
@@ -42,6 +47,13 @@ Header.defaultProps = {
 
 Header.propTypes = {
   name: PropTypes.string,
+  openSignInDialog: PropTypes.func,
+  openSignUpDialog: PropTypes.func,
 };
 
-export default Header;
+const mapDispatchToProps = { ...appActions };
+
+export default connect(
+  null,
+  mapDispatchToProps,
+)(Header);

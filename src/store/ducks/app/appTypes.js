@@ -1,2 +1,7 @@
 export const SHOW_NOTIFICATION = 'app/SHOW_NOTIFICATION';
-export const SECOND_ACTION = 'app/SECOND_ACTION';
+
+export const OPEN_SIGN_UP_DIALOG = 'app/OPEN_SIGN_UP_DIALOG';
+export const CLOSE_SIGN_UP_DIALOG = 'app/CLOSE_SIGN_UP_DIALOG';
+
+export const OPEN_SIGN_IN_DIALOG = 'app/OPEN_SIGN_IN_DIALOG';
+export const CLOSE_SIGN_IN_DIALOG = 'app/CLOSE_SIGN_IN_DIALOG';
