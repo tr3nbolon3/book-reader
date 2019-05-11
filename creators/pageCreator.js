@@ -8,7 +8,7 @@ module.exports = name => {
 
   const componentPath = `./src/views/pages/${normalName}`;
 
-  const componentBody = makeFileBody('componentTemplate.txt');
+  const componentBody = makeFileBody('pageTemplate.txt');
   const indexBody = makeFileBody('indexTemplate.txt');
 
   try {
