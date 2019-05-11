@@ -5,9 +5,12 @@ const pageCreator = require('./pageCreator');
 const duckCreator = require('./duckCreator');
 const iconCreator = require('./iconCreator');
 const layoutCreator = require('./layoutCreator');
+const connectedComponentCreator = require('./connectedComponentCreator');
 
 const creators = {
   '--component': componentCreator,
+  '--connected-component': connectedComponentCreator,
+  '--CC': connectedComponentCreator,
   '--container': containerCreator,
   '--layout': layoutCreator,
   '--icon': iconCreator,
