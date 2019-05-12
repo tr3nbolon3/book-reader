@@ -8,7 +8,7 @@ import { Dialog, DialogTitle, DialogActions, Button, DialogContent } from '@mate
 import Form from '@components/Form';
 import Input from '@components/Input';
 
-import { composeValidators, required, password, email } from '@utils/validate';
+import { required } from '@utils/validate';
 
 import TextDivider from '@UI/TextDivider';
 import FbButton from '@UI/FbButton';
@@ -29,13 +29,8 @@ function SignInDialog({ isOpen, closeSignInDialog }) {
             <DialogTitle>Вход</DialogTitle>
             <DialogContent className={styles.content}>
               <div>
-                <Input name="email" label="Почта" validate={composeValidators(required(), email())} />
-                <Input
-                  type="password"
-                  name="password"
-                  label="Пароль"
-                  validate={composeValidators(required(), password())}
-                />
+                <Input name="email" label="Почта" validate={required()} />
+                <Input type="password" name="password" label="Пароль" validate={required()} />
               </div>
               <TextDivider text="либо войти через соц.сети" />
               <div className={styles.socialButtons}>

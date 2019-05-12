@@ -5,6 +5,9 @@ export const email = (message = 'Значение поля не является
 
 export const required = (message = 'Поле должно быть заполнено') => value => (value ? undefined : message);
 
+export const isEqual = (value1, message = 'Значения не совпадают') => value2 =>
+  value1 === value2 ? undefined : message;
+
 // eslint-disable-next-line no-restricted-globals
 export const number = (message = 'Значение поля должно быть числом') => value => (isNaN(value) ? message : undefined);
 
