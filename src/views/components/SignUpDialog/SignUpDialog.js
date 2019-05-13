@@ -26,6 +26,8 @@ function SignUpDialog({ isOpen, closeSignUpDialog }) {
             <DialogTitle>Регистрация</DialogTitle>
             <DialogContent className={styles.content}>
               <div>
+                <Input name="firstName" label="Имя" validate={composeValidators(required())} />
+                <Input name="lastName" label="Фамилия" validate={composeValidators(required())} />
                 <Input name="email" label="Почта" validate={composeValidators(required(), email())} />
                 <Input
                   type="password"
