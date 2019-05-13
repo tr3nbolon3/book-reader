@@ -1,3 +1,4 @@
+import firebase from 'firebase/app';
 import { createStore, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import { reduxFirestore, getFirestore } from 'redux-firestore';
@@ -14,7 +15,7 @@ const middleware = [thunk.withExtraArgument({ getFirebase, getFirestore })];
 const enhancers = composeEnhancers(
   applyMiddleware(...middleware),
   reduxFirestore(firebaseConfig),
-  reactReduxFirebase(firebaseConfig),
+  reactReduxFirebase(firebase, { useFirestoreForProfile: true, userProfile: 'users', attachAuthIsReady: true }),
 );
 
 export default function configureStore(preloadState = {}) {

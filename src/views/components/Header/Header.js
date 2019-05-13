@@ -8,6 +8,8 @@ import * as appActions from '@ducks/app/appActions';
 import routes from '@routes';
 import * as paths from '@routes/paths';
 import { Button } from '@material-ui/core';
+import * as sessionActions from '@ducks/session/sessionActions';
+import { getUser } from '@ducks/firebase/firebaseSelectors';
 
 // class Header extends React.Component {
 //   static propTypes = {
@@ -27,7 +29,7 @@ import { Button } from '@material-ui/core';
 //   }
 // }
 
-function Header({ openSignInDialog, openSignUpDialog }) {
+function Header({ user, openSignInDialog, openSignUpDialog, signOut }) {
   return (
     <div>
       {routes.map(({ name, path }) => (
@@ -37,6 +39,8 @@ function Header({ openSignInDialog, openSignUpDialog }) {
       ))}
       <Button onClick={openSignInDialog}>Open sign in dialog</Button>
       <Button onClick={openSignUpDialog}>Open sign up dialog</Button>
+      <Button onClick={signOut}>Sign out</Button>
+      <div>{JSON.stringify(user, null, '  ')}</div>
     </div>
   );
 }
@@ -49,11 +53,17 @@ Header.propTypes = {
   name: PropTypes.string,
   openSignInDialog: PropTypes.func,
   openSignUpDialog: PropTypes.func,
+  signOut: PropTypes.func,
+  user: PropTypes.object,
 };
 
-const mapDispatchToProps = { ...appActions };
+const mapStateToProps = state => ({
+  user: getUser(state),
+});
+
+const mapDispatchToProps = { ...appActions, ...sessionActions };
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps,
 )(Header);

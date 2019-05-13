@@ -3,11 +3,11 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import { Redirect } from 'react-router-dom';
 import history from '@utils/history';
-import { getIsLoggedIn } from '@ducks/session/sessionSelectors';
+import { getIsSignedIn } from '@ducks/firebase/firebaseSelectors';
 
 export default function withLogin(WrappedComponent) {
   const WithLogin = props => {
-    if (!props.isLoggedIn) {
+    if (!props.isSignedIn) {
       history.goBack();
       return null;
       // return <Redirect to="/login" />;
@@ -18,11 +18,11 @@ export default function withLogin(WrappedComponent) {
 
   const { bool } = PropTypes;
   WithLogin.propTypes = {
-    isLoggedIn: bool.isRequired,
+    isSignedIn: bool.isRequired,
   };
 
   const mapStateToProps = state => ({
-    isLoggedIn: getIsLoggedIn(state),
+    isSignedIn: getIsSignedIn(state),
   });
 
   return connect(mapStateToProps)(WithLogin);
