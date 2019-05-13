@@ -1,8 +1,10 @@
-import { createSelector } from 'reselect';
+// import { createSelector } from 'reselect';
 
-export const getIsLoggedIn = state => state.session.isLoggedIn;
+// export const getIsSignedIn = state => state.session.isSignedIn;
+// eslint-disable-next-line
+export const getIsLoading = state => state.session.isLoading;
 
-export const getSessionPartFiltered = createSelector(
-  getIsLoggedIn,
-  isLoggedIn => isLoggedIn,
-);
+// export const getSessionPartFiltered = createSelector(
+//   getIsSignedIn,
+//   isSignedIn => isSignedIn,
+// );
