@@ -1,7 +1,7 @@
 import { createAction } from 'redux-actions';
 import { showNotification, closeSignUpDialog, closeSignInDialog } from '@ducks/app/appActions';
-// import history from '@utils/history';
-// import * as paths from '@routes/paths';
+import history from '@utils/history';
+import * as paths from '@routes/paths';
 
 import * as sessionTypes from './sessionTypes';
 import handleSignInError from './handleSignInError';
@@ -18,7 +18,7 @@ export const signIn = ({ email, password }) => async (dispatch, getState, { getF
     const firebase = getFirebase();
     await firebase.auth().signInWithEmailAndPassword(email, password);
 
-    // history.push(paths.LIBRARY);
+    history.push(paths.LIBRARY);
     dispatch(closeSignInDialog());
     dispatch(showNotification({ type: 'success', message: 'Вход успешно осуществлен!' }));
     dispatch(signInSuccess());
@@ -49,7 +49,7 @@ export const signUp = ({ firstName, lastName, email, password }) => async (
       .doc(user.uid)
       .set({ firstName, lastName, initials: `${lastName[0]}.${firstName[0]}.` });
 
-    // history.push(paths.LIBRARY);
+    history.push(paths.LIBRARY);
     dispatch(closeSignUpDialog());
     dispatch(showNotification({ type: 'success', message: 'Регистрация прошла успешно!' }));
     dispatch(signUpSuccess());
@@ -70,7 +70,7 @@ export const signOut = () => async (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
     await firebase.auth().signOut();
 
-    // history.push(paths.HOME);
+    history.push(paths.HOME);
     dispatch(signOutSuccess());
   } catch (error) {
     dispatch(showNotification({ type: 'error', message: 'Во время выхода произошла ошибка ' }));

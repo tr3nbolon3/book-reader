@@ -1,46 +1,57 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import * as appActions from '@ducks/app/appActions';
+import { withStyles } from '@material-ui/core/styles';
+import { AppBar, Toolbar, Button, IconButton } from '@material-ui/core';
+import { Menu as MenuIcon } from '@material-ui/icons';
 
-import routes from '@routes';
-import * as paths from '@routes/paths';
-import { Button } from '@material-ui/core';
+import * as appActions from '@ducks/app/appActions';
 import * as sessionActions from '@ducks/session/sessionActions';
+
 import { getUser } from '@ducks/firebase/firebaseSelectors';
 
-// class Header extends React.Component {
-//   static propTypes = {
-//     name: PropTypes.string.isRequired,
-//   };
+// import routes from '@routes';
+// import * as paths from '@routes/paths';
 
-//   static defaultProps = {
-//     name: 'Header',
-//   };
+import Logo from '@UI/Logo';
+import styles from './Header.module.scss';
 
-//   render() {
-//     return (
-//       <div>
-//         <p>{this.props.name}</p>
-//       </div>
-//     );
-//   }
-// }
-
-function Header({ user, openSignInDialog, openSignUpDialog, signOut }) {
+// function Header({ user, openSignInDialog, openSignUpDialog, signOut }) {
+function Header({ openSignInDialog, openSignUpDialog }) {
+  // return (
+  //   <div>
+  //     {routes.map(({ name, path }) => (
+  //       <Button key={name}>
+  //         {path === paths.BOOK ? <Link to="/books/1">{name}</Link> : <Link to={path}>{name}</Link>}
+  //       </Button>
+  //     ))}
+  //     <Button onClick={openSignInDialog}>Open sign in dialog</Button>
+  //     <Button onClick={openSignUpDialog}>Open sign up dialog</Button>
+  //     <Button onClick={signOut}>Sign out</Button>
+  //     <div>{JSON.stringify(user, null, '  ')}</div>
+  //   </div>
+  // );
   return (
     <div>
-      {routes.map(({ name, path }) => (
-        <Button key={name}>
-          {path === paths.BOOK ? <Link to="/books/1">{name}</Link> : <Link to={path}>{name}</Link>}
-        </Button>
-      ))}
-      <Button onClick={openSignInDialog}>Open sign in dialog</Button>
-      <Button onClick={openSignUpDialog}>Open sign up dialog</Button>
-      <Button onClick={signOut}>Sign out</Button>
-      <div>{JSON.stringify(user, null, '  ')}</div>
+      <AppBar position="static">
+        <Toolbar>
+          <IconButton className={styles.menuButton} color="inherit" aria-label="Menu">
+            <MenuIcon />
+          </IconButton>
+          <Logo className={styles.grow} />
+          {/* <Typography variant="h6" color="inherit" className={styles.grow}>
+            News
+          </Typography> */}
+          <Button onClick={openSignUpDialog} color="inherit">
+            Зарегистрироваться
+          </Button>
+          <Button onClick={openSignInDialog} color="inherit">
+            Войти
+          </Button>
+        </Toolbar>
+      </AppBar>
     </div>
   );
 }
@@ -66,4 +77,4 @@ const mapDispatchToProps = { ...appActions, ...sessionActions };
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Header);
+)(withStyles(styles)(Header));
