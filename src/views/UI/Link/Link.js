@@ -1,13 +1,12 @@
-import React from "react";
-import { Link as RouterLink } from "react-router-dom";
-import MaterialLink from "@material-ui/core/Link";
+import React from 'react';
+// import PropTypes from 'prop-types';
+import { Link as RouterLink } from 'react-router-dom';
+import MaterialLink from '@material-ui/core/Link';
 
-function Link({ children, ...rest }) {
-  return (
-    <MaterialLink component={RouterLink} {...rest}>
-      {children}
-    </MaterialLink>
-  );
+function Link(props) {
+  return <MaterialLink color="inherit" component={RouterLink} {...props} />;
 }
+
+Link.propTypes = MaterialLink.propTypes;
 
 export default Link;

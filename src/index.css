@@ -25,3 +25,11 @@ code {
   flex-direction: column;
   min-height: 100%;
 }
+
+a {
+  color: inherit;
+}
+
+a:hover {
+  opacity: 0.7;
+}

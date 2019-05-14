@@ -1,8 +1,73 @@
-.grow {
-  flex-grow: 1;
+@import "src/breakpoints";
+
+.root {
+  width: 100%;
 }
 
-.menuButton {
-  margin-left: -12;
-  margin-right: 20;
+.toolbar {
+  flex-wrap: wrap;
+}
+
+.toolbarLeft {
+  display: flex;
+  align-items: center;
+  margin: 0 24px;
+
+  @media (max-width: $sm) {
+    width: 100%;
+    margin: 0;
+    order: 1;
+    margin-bottom: 16px;
+  }
+}
+
+.toolbarRight {
+  display: flex;
+  margin-left: auto;
+}
+
+.profileIconButton {
+  margin-left: 24px;
+}
+
+.search {
+  width: auto;
+  position: relative;
+  border-radius: 4px;
+  background-color: rgba(white, 0.15);
+  margin-right: 24px;
+
+  &:hover {
+    background-color: rgba(white, 0.25);
+  }
+
+  @media (max-width: $sm) {
+    width: 100%!important;
+  }
+}
+
+.searchIcon {
+  width: 72px;
+  height: 100%;
+  position: absolute;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.inputRoot {
+  color: inherit!important;
+  width: 100%;
+}
+
+.inputInput {
+  padding: 8px!important;
+  padding-left: 80px!important;
+  transition: width .3s ease!important;
+  width: 200px!important;
+
+  @media (max-width: $sm) {
+    width: 100%!important;
+  }
 }
