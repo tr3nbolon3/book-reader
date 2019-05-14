@@ -1,11 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
-import { BrowserRouter } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 
 import firebase from 'firebase/app';
+import 'firebase/database';
 import 'firebase/firestore';
 import 'firebase/auth';
+
+import history from '@utils/history';
 
 import ErrorBoundary from '@components/ErrorBoundary';
 import configureStore from '@src/store';
@@ -16,16 +19,16 @@ import firebaseConfig from './configs/firebase';
 
 firebase.initializeApp(firebaseConfig);
 // firebase.firestore().settings({ timestampsInSnapshots: true });
-firebase.firestore().settings({});
+firebase.firestore();
 
 const store = configureStore();
 
 ReactDOM.render(
   <Provider store={store}>
     <ErrorBoundary>
-      <BrowserRouter>
+      <Router history={history}>
         <App />
-      </BrowserRouter>
+      </Router>
     </ErrorBoundary>
   </Provider>,
   document.getElementById('root'),

@@ -1,7 +1,17 @@
 // import { createSelector } from 'reselect';
 
-// eslint-disable-next-line
+export const getIsAuthLoaded = state => state.firebase.auth.isLoaded;
+export const getIsProfileLoaded = state => state.firebase.profile.isLoaded;
+
+export const getIsUserLoaded = state => getIsAuthLoaded(state) && getIsProfileLoaded(state);
+
+// export const getIsUserLoaded = createSelector(
+//   [getIsAuthLoaded, getIsProfileLoaded],
+//   (isAuthLoaded, isProfileLoaded) => isAuthLoaded && isProfileLoaded,
+// );
+
 export const getIsSignedIn = state => !state.firebase.auth.isEmpty;
+
 export const getUser = state => {
   const {
     auth,
