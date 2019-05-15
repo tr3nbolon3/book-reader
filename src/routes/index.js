@@ -4,6 +4,7 @@ import Library from '@pages/Library';
 import Reader from '@pages/Reader';
 import Subscribe from '@pages/Subscribe';
 import UserProfile from '@pages/UserProfile';
+import NotFound from '@pages/NotFound';
 
 import withLogin from '@enhancers/with-login';
 import * as paths from './paths';
@@ -39,5 +40,9 @@ export default [
     name: 'UserProfile',
     path: paths.USER_PROFILE,
     component: withLogin(UserProfile),
+  },
+  {
+    name: 'NotFound',
+    component: NotFound,
   },
 ];
