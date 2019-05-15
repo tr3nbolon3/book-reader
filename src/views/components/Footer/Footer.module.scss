@@ -1,0 +1,18 @@
+.root {
+  padding: 16px;
+  text-align: center;
+  color: white;
+}
+
+.logo {
+  font-size: 32px;
+  margin-bottom: 16px;
+}
+
+.links {
+  margin-bottom: 24px;
+
+  .link + .link {
+    margin-left: 24px;
+  }
+}
