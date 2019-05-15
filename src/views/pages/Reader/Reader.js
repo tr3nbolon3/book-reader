@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ePub from 'epubjs';
 import { CircularProgress } from '@material-ui/core';
+import MainLayout from '@layouts/MainLayout';
 
 class Reader extends Component {
   state = {
@@ -34,7 +35,7 @@ class Reader extends Component {
     const isShowProgress = !isBookReady || hasDelay;
 
     return (
-      <div>
+      <MainLayout>
         {/* BOOK VIEWER CONTAINER */}
         <div style={isShowProgress ? { visibility: 'hidden', opacity: 0 } : {}}>
           <div id="bookViewer" />
@@ -53,7 +54,7 @@ class Reader extends Component {
           </div>
         </div>
         {isShowProgress && <CircularProgress />}
-      </div>
+      </MainLayout>
     );
   }
 }

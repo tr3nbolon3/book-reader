@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 // import * as appSelectors from '@ducks/app/appSelectors';
 import * as appActions from '@ducks/app/appActions';
 import { getIsSignedIn } from '@ducks/firebase/firebaseSelectors';
+import MainLayout from '@layouts/MainLayout';
 // import * as paths from '@routes/paths';
 
 // class Home extends React.Component {
@@ -32,9 +33,9 @@ function Home({ name }) {
   // }
 
   return (
-    <div>
+    <MainLayout>
       <p>{name}</p>
-    </div>
+    </MainLayout>
   );
 }
 

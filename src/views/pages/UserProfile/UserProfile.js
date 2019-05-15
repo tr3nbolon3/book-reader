@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 // import * as appSelectors from '@ducks/app/appSelectors';
 import * as appActions from '@ducks/app/appActions';
 
+import MainLayout from '@layouts/MainLayout';
+
 // class UserProfile extends React.Component {
 //   static propTypes = {
 //     name: PropTypes.string.isRequired,
@@ -15,18 +17,18 @@ import * as appActions from '@ducks/app/appActions';
 
 //   render() {
 //     return (
-//       <div>
+//       <MainLayout>
 //         <p>{this.props.name}</p>
-//       </div>
+//       </MainLayout>
 //     );
 //   }
 // }
 
 function UserProfile(props) {
   return (
-    <div>
+    <MainLayout>
       <p>{props.name}</p>
-    </div>
+    </MainLayout>
   );
 }
 

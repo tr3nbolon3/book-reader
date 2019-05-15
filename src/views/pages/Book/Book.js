@@ -4,6 +4,8 @@ import { connect } from 'react-redux';
 // import * as appSelectors from '@ducks/app/appSelectors';
 import * as appActions from '@ducks/app/appActions';
 
+import MainLayout from '@layouts/MainLayout';
+
 // class Book extends React.Component {
 //   static propTypes = {
 //     name: PropTypes.string.isRequired,
@@ -24,11 +26,11 @@ import * as appActions from '@ducks/app/appActions';
 
 function Book(props) {
   return (
-    <div>
+    <MainLayout>
       <p>
         {props.name} {props.id}
       </p>
-    </div>
+    </MainLayout>
   );
 }
 
