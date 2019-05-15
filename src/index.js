@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router } from 'react-router-dom';
 
+import { SnackbarProvider } from 'notistack';
+
 import firebase from 'firebase/app';
 import 'firebase/database';
 import 'firebase/firestore';
@@ -30,11 +32,13 @@ ReactDOM.render(<AbsoluteSpinner />, document.getElementById('root'));
 store.firebaseAuthIsReady.then(() => {
   ReactDOM.render(
     <Provider store={store}>
-      <ErrorBoundary>
-        <Router history={history}>
-          <App />
-        </Router>
-      </ErrorBoundary>
+      <SnackbarProvider>
+        <ErrorBoundary>
+          <Router history={history}>
+            <App />
+          </Router>
+        </ErrorBoundary>
+      </SnackbarProvider>
     </Provider>,
     document.getElementById('root'),
   );

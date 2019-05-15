@@ -1,43 +1,51 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.min.css';
+import { withSnackbar } from 'notistack';
 import { getAppNotification } from '@ducks/app/appSelectors';
-
-const textsMap = {
-  success: 'Success!',
-  error: 'Error!',
-  warn: 'Warning!',
-  info: 'Info!',
-  default: 'Default',
-};
+import { IconButton } from '@material-ui/core';
+import { Close as CloseIcon } from '@material-ui/icons';
 
 class NotificationSystem extends Component {
   componentDidUpdate = () => {
     const {
-      notification: { type, message },
+      notification: { type: variant, message },
+      enqueueSnackbar,
     } = this.props;
 
-    const text = message || textsMap[type];
-    if (type === 'default') {
-      toast(text);
-    } else {
-      toast[type](text);
-    }
+    enqueueSnackbar(message, {
+      variant,
+      anchorOrigin: {
+        vertical: 'top',
+        horizontal: 'right',
+      },
+      action: this.renderActions,
+    });
   };
+
+  renderActions = key => (
+    <IconButton
+      onClick={() => {
+        this.props.closeSnackbar(key);
+      }}
+    >
+      <CloseIcon style={{ color: 'white' }} />
+    </IconButton>
+  );
 
   // eslint-disable-next-line
   render() {
-    return <ToastContainer />;
+    return null;
   }
 }
 
 NotificationSystem.propTypes = {
   notification: PropTypes.shape({
-    type: PropTypes.oneOf(['success', 'error', 'warn', 'info', 'default']),
+    type: PropTypes.oneOf(['success', 'error', 'warning', 'info', 'default']),
     message: PropTypes.string,
   }),
+  closeSnackbar: PropTypes.func.isRequired,
+  enqueueSnackbar: PropTypes.func.isRequired,
 };
 
-export default connect(state => ({ notification: getAppNotification(state) }))(NotificationSystem);
+export default connect(state => ({ notification: getAppNotification(state) }))(withSnackbar(NotificationSystem));
