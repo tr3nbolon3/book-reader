@@ -33,6 +33,8 @@
     "redux-firestore": "^0.7.3",
     "redux-thunk": "^2.3.0",
     "reselect": "^4.0.0",
+    "swiper": "^4.5.0",
+    "typeface-roboto": "0.0.54",
     "validator": "^10.11.0"
   },
   "scripts": {

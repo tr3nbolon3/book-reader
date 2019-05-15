@@ -10,6 +10,8 @@ import 'firebase/database';
 import 'firebase/firestore';
 import 'firebase/auth';
 
+import 'typeface-roboto';
+
 import history from '@utils/history';
 
 import ErrorBoundary from '@components/ErrorBoundary';
