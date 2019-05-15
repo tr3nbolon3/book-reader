@@ -14,6 +14,14 @@ const icon = PropTypes.shape({
   marginBottom: numberOrString,
 });
 
+const user = PropTypes.shape({
+  firstName: PropTypes.string.isRequired,
+  lastName: PropTypes.string.isRequired,
+  initials: PropTypes.string.isRequired,
+  avatarUrl: PropTypes.string,
+});
+
 export default {
   icon,
+  user,
 };

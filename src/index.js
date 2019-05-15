@@ -11,6 +11,8 @@ import 'firebase/auth';
 import history from '@utils/history';
 
 import ErrorBoundary from '@components/ErrorBoundary';
+import AbsoluteSpinner from '@UI/AbsoluteSpinner';
+
 import configureStore from '@src/store';
 import App from './App';
 import './index.css';
@@ -23,13 +25,17 @@ firebase.firestore();
 
 const store = configureStore();
 
-ReactDOM.render(
-  <Provider store={store}>
-    <ErrorBoundary>
-      <Router history={history}>
-        <App />
-      </Router>
-    </ErrorBoundary>
-  </Provider>,
-  document.getElementById('root'),
-);
+ReactDOM.render(<AbsoluteSpinner />, document.getElementById('root'));
+
+store.firebaseAuthIsReady.then(() => {
+  ReactDOM.render(
+    <Provider store={store}>
+      <ErrorBoundary>
+        <Router history={history}>
+          <App />
+        </Router>
+      </ErrorBoundary>
+    </Provider>,
+    document.getElementById('root'),
+  );
+});

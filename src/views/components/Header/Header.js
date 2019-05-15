@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import $propTypes from '@prop-types';
 import { connect } from 'react-redux';
 
-import { MenuItem, Menu, AppBar, Toolbar, Button, IconButton, InputBase, Typography } from '@material-ui/core';
-import { AccountCircle, Search as SearchIcon } from '@material-ui/icons';
+import { MenuItem, Menu, AppBar, Toolbar, Button, IconButton, InputBase, Typography, Avatar } from '@material-ui/core';
+import { Search as SearchIcon } from '@material-ui/icons';
 
 import * as appActions from '@ducks/app/appActions';
 import * as sessionActions from '@ducks/session/sessionActions';
@@ -58,7 +59,7 @@ class Header extends React.Component {
         </MenuItem>
         <MenuItem
           onClick={this.handleClickMenuItem(() => {
-            history.push(paths.USER_PROFILE);
+            history.push(paths.MY_BOOKS);
           })}
         >
           Мои книги
@@ -77,6 +78,8 @@ class Header extends React.Component {
 
   renderSignedInControls = () => {
     const { anchorEl } = this.state;
+    const { user } = this.props;
+
     const isMenuOpen = Boolean(anchorEl);
 
     return (
@@ -88,7 +91,8 @@ class Header extends React.Component {
           onClick={this.handleProfileMenuOpen}
           color="inherit"
         >
-          <AccountCircle />
+          {user.avatarUrl ? <Avatar src={user.avatarUrl} /> : <Avatar>{user.initials}</Avatar>}
+          {/* <AccountCircle /> */}
         </IconButton>
         {this.renderMenu()}
       </>
@@ -148,7 +152,7 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-  user: PropTypes.object,
+  user: $propTypes.user,
   openSignUpDialog: PropTypes.func.isRequired,
   openSignInDialog: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
