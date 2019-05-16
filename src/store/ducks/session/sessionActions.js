@@ -47,7 +47,7 @@ export const signUp = ({ firstName, lastName, email, password }) => async (
     await firestore
       .collection('users')
       .doc(user.uid)
-      .set({ firstName, lastName, initials: `${firstName[0]}${lastName[0]}` });
+      .set({ firstName, lastName, initials: `${firstName[0]}${lastName[0]}`, fullName: `${firstName} ${lastName}` });
 
     history.push(paths.LIBRARY);
     dispatch(closeSignUpDialog());

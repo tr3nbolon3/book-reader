@@ -9,7 +9,7 @@ function Container({ className, children }) {
 }
 
 Container.propTypes = {
-  children: PropTypes.element,
+  children: PropTypes.any,
   className: PropTypes.func,
 };
 

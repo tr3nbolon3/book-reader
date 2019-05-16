@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import $propTypes from '@prop-types';
 import { connect } from 'react-redux';
 
-import { MenuItem, Menu, AppBar, Toolbar, Button, IconButton, InputBase, Typography, Avatar } from '@material-ui/core';
+import { MenuItem, Menu, AppBar, Toolbar, Button, IconButton, InputBase, Typography } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
 
 import * as appActions from '@ducks/app/appActions';
@@ -17,6 +17,7 @@ import history from '@utils/history';
 import Logo from '@UI/Logo';
 import Link from '@UI/Link';
 
+import UserAvatar from '@UI/UserAvatar';
 import styles from './Header.module.scss';
 // import styles from './styles';
 
@@ -91,7 +92,7 @@ class Header extends React.Component {
           onClick={this.handleProfileMenuOpen}
           color="inherit"
         >
-          {user.avatarUrl ? <Avatar src={user.avatarUrl} /> : <Avatar>{user.initials}</Avatar>}
+          <UserAvatar user={user} />
           {/* <AccountCircle /> */}
         </IconButton>
         {this.renderMenu()}
@@ -127,7 +128,7 @@ class Header extends React.Component {
                   <SearchIcon />
                 </div>
                 <InputBase
-                  placeholder="Search…"
+                  placeholder="Поиск..."
                   classes={{
                     root: styles.inputRoot,
                     input: styles.inputInput,

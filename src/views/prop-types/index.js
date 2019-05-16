@@ -17,6 +17,7 @@ const icon = PropTypes.shape({
 const user = PropTypes.shape({
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
+  fullName: PropTypes.string.isRequired,
   initials: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
 });

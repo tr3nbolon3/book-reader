@@ -1,10 +1,14 @@
 import React from 'react';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
+import $propTypes from '@prop-types';
+import cn from 'classnames';
 // import { Redirect } from 'react-router-dom';
-// import { connect } from 'react-redux';
+import { connect } from 'react-redux';
 // import * as appSelectors from '@ducks/app/appSelectors';
 // import * as appActions from '@ducks/app/appActions';
 // import { getIsSignedIn } from '@ducks/firebase/firebaseSelectors';
+import { getUser } from '@ducks/firebase/firebaseSelectors';
+
 import { Typography, Button } from '@material-ui/core';
 import { Weekend as WeekendIcon, AccountBalanceWallet as AccountBalanceWalletIcon } from '@material-ui/icons';
 
@@ -14,6 +18,7 @@ import Container from '@UI/Container';
 
 import history from '@utils/history';
 import * as paths from '@routes/paths';
+import FeedbackSlider from '@components/FeedbackSlider';
 import styles from './Home.module.scss';
 
 const renderHero = (
@@ -55,11 +60,25 @@ const renderQuote = (
   </div>
 );
 
+const renderFeedback = ops => (
+  <div className={cn(styles.section, styles.feedback)}>
+    <Container>
+      <div className={styles.sectionHeader}>
+        <Typography className={styles.sectionTitle} variant="h2" paragraph>
+          Отзывы
+        </Typography>
+        <Typography variant="subtitle2">Что говорят о bambook</Typography>
+      </div>
+      <FeedbackSlider user={ops.user} />
+    </Container>
+  </div>
+);
+
 const renderBenefits = (
   <div className={styles.section}>
     <Container>
       <div className={styles.sectionHeader}>
-        <Typography variant="h2" paragraph>
+        <Typography className={styles.sectionTitle} variant="h2" paragraph>
           Почему именно мы?
         </Typography>
         <Typography variant="subtitle2">Выбирая bambook вы получаете</Typography>
@@ -93,28 +112,30 @@ const renderBenefits = (
   </div>
 );
 
-function Home() {
+function Home({ user }) {
   return (
     <MainLayout>
       {renderHero}
       {renderQuote}
       {renderBenefits}
+      {renderFeedback({ user })}
     </MainLayout>
   );
 }
 
-Home.propTypes = {};
+Home.propTypes = {
+  user: PropTypes.shape($propTypes.user),
+};
 
-// const mapStateToProps = state => ({
-//   ...state,
-//   isSignedIn: getIsSignedIn(state),
-// });
+const mapStateToProps = state => ({
+  user: getUser(state),
+});
 
 // const mapDispatchToProps = { ...appActions };
 
-// export default connect(
-//   mapStateToProps,
-//   mapDispatchToProps,
-// )(Home);
+export default connect(
+  mapStateToProps,
+  // mapDispatchToProps,
+)(Home);
 
-export default Home;
+// export default Home;
