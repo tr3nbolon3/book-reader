@@ -20,6 +20,7 @@ export const signIn = ({ email, password }) => async (dispatch, getState, { getF
 
     history.push(paths.LIBRARY);
     dispatch(closeSignInDialog());
+
     dispatch(showNotification({ type: 'success', message: 'Вход успешно осуществлен!' }));
     dispatch(signInSuccess());
   } catch (error) {
