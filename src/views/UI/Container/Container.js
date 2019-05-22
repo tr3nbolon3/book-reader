@@ -10,7 +10,7 @@ function Container({ className, children }) {
 
 Container.propTypes = {
   children: PropTypes.any,
-  className: PropTypes.func,
+  className: PropTypes.string,
 };
 
 export default Container;
