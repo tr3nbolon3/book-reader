@@ -15,10 +15,10 @@ const icon = {
 };
 
 const user = {
-  firstName: PropTypes.string.isRequired,
-  lastName: PropTypes.string.isRequired,
-  fullName: PropTypes.string.isRequired,
-  initials: PropTypes.string.isRequired,
+  firstName: PropTypes.string,
+  lastName: PropTypes.string,
+  fullName: PropTypes.string,
+  initials: PropTypes.string,
   avatarUrl: PropTypes.string,
 };
 
