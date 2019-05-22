@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 
 const numberOrString = PropTypes.oneOfType([PropTypes.number, PropTypes.string]);
 
-const icon = PropTypes.shape({
+const icon = {
   width: numberOrString,
   height: numberOrString,
   fill: PropTypes.string,
@@ -12,15 +12,15 @@ const icon = PropTypes.shape({
   marginLeft: numberOrString,
   marginRight: numberOrString,
   marginBottom: numberOrString,
-});
+};
 
-const user = PropTypes.shape({
+const user = {
   firstName: PropTypes.string.isRequired,
   lastName: PropTypes.string.isRequired,
   fullName: PropTypes.string.isRequired,
   initials: PropTypes.string.isRequired,
   avatarUrl: PropTypes.string,
-});
+};
 
 export default {
   icon,
