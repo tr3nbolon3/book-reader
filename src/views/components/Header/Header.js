@@ -18,6 +18,7 @@ import Logo from '@UI/Logo';
 import Link from '@UI/Link';
 
 import UserAvatar from '@UI/UserAvatar';
+import CurrentSubscribeCard from '@UI/CurrentSubscribeCard';
 import styles from './Header.module.scss';
 // import styles from './styles';
 
@@ -41,6 +42,7 @@ class Header extends React.Component {
 
   renderMenu = () => {
     const { anchorEl } = this.state;
+    const { user } = this.props;
     const isMenuOpen = Boolean(anchorEl);
 
     return (
@@ -51,6 +53,7 @@ class Header extends React.Component {
         open={isMenuOpen}
         onClose={this.handleMenuClose}
       >
+        <div>{user.fullName}</div>
         <MenuItem
           onClick={this.handleClickMenuItem(() => {
             history.push(paths.USER_PROFILE);
@@ -65,13 +68,14 @@ class Header extends React.Component {
         >
           Мои книги
         </MenuItem>
-        <MenuItem
+        <CurrentSubscribeCard />
+        {/* <MenuItem
           onClick={this.handleClickMenuItem(() => {
             history.push(paths.SUBSCRIBE);
           })}
         >
           Подписка
-        </MenuItem>
+        </MenuItem> */}
         <MenuItem onClick={this.handleClickMenuItem(this.props.signOut)}>Выйти</MenuItem>
       </Menu>
     );
