@@ -153,7 +153,7 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
-  user: $propTypes.user,
+  user: PropTypes.shape($propTypes.user),
   openSignUpDialog: PropTypes.func.isRequired,
   openSignInDialog: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
