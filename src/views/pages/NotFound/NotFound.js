@@ -35,7 +35,7 @@ function NotFound() {
         </Typography>
         <Typography style={styles.text}>
           Страница не найдена. Перейти к{' '}
-          <Link style={styles.link} to={paths.LIBRARY}>
+          <Link style={styles.link} to={paths.BOOKS}>
             каталогу книг
           </Link>
         </Typography>

@@ -140,7 +140,7 @@ class Header extends React.Component {
                 />
               </div>
               {/* <div className={styles.grow}> */}
-              <Link to={paths.LIBRARY}>
+              <Link to={paths.BOOKS}>
                 <Typography color="inherit" noWrap>
                   Каталог книг
                 </Typography>

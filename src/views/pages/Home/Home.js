@@ -36,7 +36,7 @@ const renderHero = (
         variant="contained"
         color="primary"
         size="large"
-        onClick={() => history.push(paths.LIBRARY)}
+        onClick={() => history.push(paths.BOOKS)}
       >
         Выбрать книгу
       </Button>

@@ -18,7 +18,7 @@ export const signIn = ({ email, password }) => async (dispatch, getState, { getF
     const firebase = getFirebase();
     await firebase.auth().signInWithEmailAndPassword(email, password);
 
-    history.push(paths.LIBRARY);
+    history.push(paths.BOOKS);
     dispatch(closeSignInDialog());
 
     dispatch(showNotification({ type: 'success', message: 'Вход успешно осуществлен!' }));
@@ -50,7 +50,7 @@ export const signUp = ({ firstName, lastName, email, password }) => async (
       .doc(user.uid)
       .set({ firstName, lastName, initials: `${firstName[0]}${lastName[0]}`, fullName: `${firstName} ${lastName}` });
 
-    history.push(paths.LIBRARY);
+    history.push(paths.BOOKS);
     dispatch(closeSignUpDialog());
     dispatch(showNotification({ type: 'success', message: 'Регистрация прошла успешно!' }));
     dispatch(signUpSuccess());

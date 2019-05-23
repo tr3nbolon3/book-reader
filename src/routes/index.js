@@ -1,6 +1,6 @@
 import Book from '@pages/Book';
 import Home from '@pages/Home';
-import Library from '@pages/Library';
+import Books from '@pages/Books';
 import Reader from '@pages/Reader';
 import Subscribe from '@pages/Subscribe';
 import UserProfile from '@pages/UserProfile';
@@ -17,14 +17,14 @@ export default [
     component: Home,
   },
   {
-    name: 'Library',
-    path: paths.LIBRARY,
-    component: Library,
-  },
-  {
     name: 'Book',
     path: paths.BOOK,
     component: Book,
+  },
+  {
+    name: 'Books',
+    path: paths.BOOKS,
+    component: Books,
   },
   {
     name: 'Subscribe',
