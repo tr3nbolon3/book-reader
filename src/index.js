@@ -29,7 +29,16 @@ firebase.firestore();
 
 const store = configureStore();
 
-store.firestore.setListeners([{ collection: 'books' }, { collection: 'users' }]);
+store.firestore.setListeners([
+  { collection: 'accessRestrictions' },
+  { collection: 'authors' },
+  { collection: 'books' },
+  { collection: 'booksMeta' },
+  { collection: 'comments' },
+  { collection: 'genres' },
+  { collection: 'subscribes' },
+  { collection: 'users' },
+]);
 
 ReactDOM.render(<AbsoluteSpinner />, document.getElementById('root'));
 
