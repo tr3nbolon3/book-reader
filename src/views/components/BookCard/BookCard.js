@@ -1,13 +1,15 @@
 import React from 'react';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
+import $propTypes from '@prop-types';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
 import Typography from '@material-ui/core/Typography';
 
 import styles from './BookCard.module.scss';
+import { getBookAuthorNames } from '@utils/';
 
-function BookCard({ image, name, author, onClick }) {
+function BookCard({ cover, name, authors, onClick }) {
   return (
     <Card className={styles.root} onClick={onClick}>
       <CardActionArea className={styles.inner}>
@@ -16,7 +18,7 @@ function BookCard({ image, name, author, onClick }) {
           alt="Contemplative Reptile"
           className={styles.image}
           height="140"
-          image={image}
+          image={cover}
           title="Contemplative Reptile"
         />
         <div className={styles.info}>
@@ -24,7 +26,7 @@ function BookCard({ image, name, author, onClick }) {
             {name}
           </Typography>
           <Typography className={styles.author} component="span">
-            {author}
+            {getBookAuthorNames(authors)}
           </Typography>
         </div>
       </CardActionArea>
@@ -32,12 +34,6 @@ function BookCard({ image, name, author, onClick }) {
   );
 }
 
-BookCard.propTypes = {
-  name: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  image: PropTypes.string,
-  onClick: PropTypes.func,
-  // styles: PropTypes.object.isRequired,
-};
+BookCard.propTypes = $propTypes.book;
 
 export default BookCard;
