@@ -56,7 +56,7 @@ export const signUp = ({ firstName, lastName, email, password }) => async (
         initials: `${firstName[0]}${lastName[0]}`,
         fullName: `${firstName} ${lastName}`,
         gender: '',
-        age: '',
+        birthday: '',
         subscribeAt: '',
         avatarUrl:
           'https://firebasestorage.googleapis.com/v0/b/book-reader-z.appspot.com/o/images%2Fuserpics%2Fdefault%2Fdefaul-userpic.png?alt=media&token=4d86f5f3-6fae-485b-8da2-8feae2adbab3',
