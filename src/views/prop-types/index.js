@@ -61,7 +61,7 @@ const book = {
   url: PropTypes.string.isRequired,
   cover: PropTypes.string.isRequired,
   authors: PropTypes.arrayOf(PropTypes.shape(bookAuthor)).isRequired,
-  title: PropTypes.string.isRequired,
+  name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.shape(genre)),
   accessRestriction: PropTypes.oneOf([accessRestrictions.FREE, accessRestrictions.SUBSCRIBE]),
