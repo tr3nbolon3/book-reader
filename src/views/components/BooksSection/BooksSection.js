@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import $propTypes from '@prop-types';
 import BookCard from '@components/BookCard';
 import history from '@utils/history';
 import * as paths from '@routes/paths';
@@ -30,7 +31,7 @@ BooksSection.defaultProps = {
 
 BooksSection.propTypes = {
   title: PropTypes.string,
-  books: PropTypes.array.isRequired,
+  books: PropTypes.arrayOf(PropTypes.shape($propTypes.book)),
 };
 
 export default BooksSection;
