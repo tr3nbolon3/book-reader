@@ -6,41 +6,23 @@ import * as appActions from '@ducks/app/appActions';
 
 import MainLayout from '@layouts/MainLayout';
 import Container from '@UI/Container';
-import BookCard from '@components/BookCard';
+// import BookCard from '@components/BookCard';
 import BooksSection from '@components/BooksSection';
-import history from '@utils/history';
+// import history from '@utils/history';
 
-import * as paths from '@routes/paths';
-
-// class Library extends React.Component {
-//   static propTypes = {
-//     name: PropTypes.string.isRequired,
-//   };
-
-//   static defaultProps = {
-//     name: 'Library',
-//   };
-
-//   render() {
-//     return (
-//       <MainLayout>
-//         <p>{this.props.name}</p>
-//       </MainLayout>
-//     );
-//   }
-// }
+// import * as paths from '@routes/paths';
 
 const books = [
   {
     id: 1,
     name: 'Principles: Life and Work',
-    author: 'Ray Dalio',
+    authors: 'Ray Dalio',
     image: 'https://imgv2-1-f.scribdassets.com/img/word_document/357813054/149x198/d1d2a4e180/1556982951?v=1',
   },
   {
     id: 2,
     name: 'Альфа и его маленький запрет.',
-    author: 'ShennonKiss',
+    authors: 'ShennonKiss',
     image: 'https://a.wattpad.com/cover/165002790-288-k993073.jpg',
   },
   {
@@ -97,11 +79,7 @@ function Library() {
   return (
     <MainLayout>
       <Container style={{ padding: '40px 0' }}>
-        <BooksSection>
-          {books.map(book => (
-            <BookCard key={book.id} {...book} onClick={() => history.push(`${paths.BOOKS}/${book.id}`)} />
-          ))}
-        </BooksSection>
+        <BooksSection title="Бестселеры" books={books} />
       </Container>
     </MainLayout>
   );

@@ -19,6 +19,7 @@ import Container from '@UI/Container';
 import history from '@utils/history';
 import * as paths from '@routes/paths';
 import FeedbackSlider from '@components/FeedbackSlider';
+import * as firestoreActions from '@ducks/firestore/firestoreActions';
 import styles from './Home.module.scss';
 
 const renderHero = (
@@ -112,9 +113,10 @@ const renderBenefits = (
   </div>
 );
 
-function Home({ user }) {
+function Home({ fetchBooks, user }) {
   return (
     <MainLayout>
+      <button onClick={fetchBooks}>Fetch books</button>
       {renderHero}
       {renderQuote}
       {renderBenefits}
@@ -125,17 +127,18 @@ function Home({ user }) {
 
 Home.propTypes = {
   user: PropTypes.shape($propTypes.user),
+  fetchBooks: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   user: getUser(state),
 });
 
-// const mapDispatchToProps = { ...appActions };
+const mapDispatchToProps = { ...firestoreActions };
 
 export default connect(
   mapStateToProps,
-  // mapDispatchToProps,
+  mapDispatchToProps,
 )(Home);
 
 // export default Home;

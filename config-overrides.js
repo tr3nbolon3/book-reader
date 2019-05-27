@@ -1,20 +1,37 @@
 const path = require('path');
+const aliases = require('./aliases');
 
-module.exports = function override(config) {
-  // eslint-disable-next-line
-  config.resolve.alias = {
-    ...config.resolve.alias,
-    '@src': path.resolve(__dirname, 'src/'),
-    '@components': path.resolve(__dirname, 'src/views/components/'),
-    '@routes': path.resolve(__dirname, 'src/routes/'),
-    '@ducks': path.resolve(__dirname, 'src/store/ducks/'),
-    '@utils': path.resolve(__dirname, 'src/utils/'),
-    '@enhancers': path.resolve(__dirname, 'src/views/enhancers/'),
-    '@layouts': path.resolve(__dirname, 'src/views/layouts/'),
-    '@pages': path.resolve(__dirname, 'src/views/pages/'),
-    '@prop-types': path.resolve(__dirname, 'src/views/prop-types/'),
-    '@UI': path.resolve(__dirname, 'src/views/UI/'),
-  };
+const createJestAliases = jAliases =>
+  jAliases.reduce((acc, [name, aliasPath]) => ({ ...acc, [`^${name}(.*)$`]: `<rootDir>/${aliasPath}$1` }), {});
 
-  return config;
+const createWebpackAliases = wAliases =>
+  wAliases.reduce((acc, [name, aliasPath]) => ({ ...acc, [name]: path.resolve(__dirname, aliasPath) }), {});
+
+module.exports = {
+  webpack: function webpack(config) {
+    const newConfig = {
+      ...config,
+      resolve: {
+        ...config.resolve,
+        alias: {
+          ...config.resolve.alias,
+          ...createWebpackAliases(aliases),
+        },
+      },
+    };
+
+    return newConfig;
+  },
+
+  jest: function jest(config) {
+    const newConfig = {
+      ...config,
+      moduleNameMapper: {
+        ...config.moduleNameMapper,
+        ...createJestAliases(aliases),
+      },
+    };
+
+    return newConfig;
+  },
 };

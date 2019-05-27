@@ -1,0 +1,23 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  padding: 8px 16px;
+}
+
+.grid {
+  width: 100%;
+  display: flex;
+
+  &Avatar {
+    flex: none;
+    margin-right: 16px!important;
+  }
+
+  &TextField {
+    flex: 1;
+  }
+}
+
+.button {
+  margin-top: 16px!important;
+}

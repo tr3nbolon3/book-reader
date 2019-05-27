@@ -17,8 +17,8 @@ import history from '@utils/history';
 import Logo from '@UI/Logo';
 import Link from '@UI/Link';
 
-import UserAvatar from '@UI/UserAvatar';
 import CurrentSubscribeCard from '@UI/CurrentSubscribeCard';
+import CurrentUserAvatar from '@components/CurrentUserAvatar';
 import styles from './Header.module.scss';
 // import styles from './styles';
 
@@ -83,8 +83,6 @@ class Header extends React.Component {
 
   renderSignedInControls = () => {
     const { anchorEl } = this.state;
-    const { user } = this.props;
-
     const isMenuOpen = Boolean(anchorEl);
 
     return (
@@ -96,8 +94,7 @@ class Header extends React.Component {
           onClick={this.handleProfileMenuOpen}
           color="inherit"
         >
-          <UserAvatar user={user} />
-          {/* <AccountCircle /> */}
+          <CurrentUserAvatar />
         </IconButton>
         {this.renderMenu()}
       </>

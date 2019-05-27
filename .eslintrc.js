@@ -6,6 +6,7 @@ module.exports = {
   env: {
     browser: true,
     node: true,
+    jest: true,
   },
   settings: {
     'import/resolver': {
@@ -20,7 +21,8 @@ module.exports = {
           ["@layouts", "./src/views/layouts"],
           ["@pages", "./src/views/pages"],
           ["@prop-types", "./src/views/prop-types"],
-          ["@UI", "./src/views/UI"]
+          ["@UI", "./src/views/UI"],
+          ["@constants", "./src/constants"],
         ],
       },
     },

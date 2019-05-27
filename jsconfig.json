@@ -11,7 +11,8 @@
       "@ducks/*": ["./src/store/ducks/*"],
       "@routes/*": ["./src/routes/*"],
       "@utils/*": ["./src/utils/*"],
-      "@src/*": ["./src/*", "./src"]
+      "@src/*": ["./src/*", "./src"],
+      "@constants": ["./src/constants/*"]
     }
   },
   "exclude": ["node_modules"]
