@@ -4,7 +4,15 @@ import PropTypes from 'prop-types';
 import { Avatar } from '@material-ui/core';
 
 function UserAvatar({ user }) {
-  return <div>{user.avatarUrl ? <Avatar src={user.avatarUrl} /> : <Avatar>{user.initials}</Avatar>}</div>;
+  return (
+    <div>
+      {user.avatarUrl ? (
+        <Avatar alt={user.fullName} src={user.avatarUrl} />
+      ) : (
+        <Avatar alt={user.fullName}>{user.initials}</Avatar>
+      )}
+    </div>
+  );
 }
 
 UserAvatar.defaultProps = {

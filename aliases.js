@@ -1,4 +1,4 @@
-export default [
+module.exports = [
   ['@src', 'src/'],
   ['@components', 'src/views/components'],
   ['@routes', 'src/routes'],
@@ -9,4 +9,5 @@ export default [
   ['@pages', 'src/views/pages'],
   ['@prop-types', 'src/views/prop-types'],
   ['@UI', 'src/views/UI'],
+  ['@constants', 'src/constants'],
 ];

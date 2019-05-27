@@ -1,7 +1,9 @@
 import { createAction } from 'redux-actions';
 import { showNotification, closeSignUpDialog, closeSignInDialog } from '@ducks/app/appActions';
 import history from '@utils/history';
+
 import * as paths from '@routes/paths';
+import subscribes from '@src/constants/subscribes';
 
 import * as sessionTypes from './sessionTypes';
 import handleSignInError from './handleSignInError';
@@ -18,7 +20,7 @@ export const signIn = ({ email, password }) => async (dispatch, getState, { getF
     const firebase = getFirebase();
     await firebase.auth().signInWithEmailAndPassword(email, password);
 
-    history.push(paths.LIBRARY);
+    history.push(paths.BOOKS);
     dispatch(closeSignInDialog());
 
     dispatch(showNotification({ type: 'success', message: 'Вход успешно осуществлен!' }));
@@ -48,9 +50,20 @@ export const signUp = ({ firstName, lastName, email, password }) => async (
     await firestore
       .collection('users')
       .doc(user.uid)
-      .set({ firstName, lastName, initials: `${firstName[0]}${lastName[0]}`, fullName: `${firstName} ${lastName}` });
+      .set({
+        firstName,
+        lastName,
+        initials: `${firstName[0]}${lastName[0]}`,
+        fullName: `${firstName} ${lastName}`,
+        gender: '',
+        age: '',
+        subscribeAt: '',
+        avatarUrl:
+          'https://firebasestorage.googleapis.com/v0/b/book-reader-z.appspot.com/o/images%2Fuserpics%2Fdefault%2Fdefaul-userpic.png?alt=media&token=4d86f5f3-6fae-485b-8da2-8feae2adbab3',
+        currentSubscribeId: subscribes.STANDARD,
+      });
 
-    history.push(paths.LIBRARY);
+    history.push(paths.BOOKS);
     dispatch(closeSignUpDialog());
     dispatch(showNotification({ type: 'success', message: 'Регистрация прошла успешно!' }));
     dispatch(signUpSuccess());

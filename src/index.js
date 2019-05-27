@@ -29,6 +29,8 @@ firebase.firestore();
 
 const store = configureStore();
 
+store.firestore.setListeners([{ collection: 'books' }, { collection: 'users' }]);
+
 ReactDOM.render(<AbsoluteSpinner />, document.getElementById('root'));
 
 store.firebaseAuthIsReady.then(() => {

@@ -1,5 +1,11 @@
 @import "https://use.fontawesome.com/releases/v5.1.0/css/all.css";
 
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html {
   height: 100%;
 }
