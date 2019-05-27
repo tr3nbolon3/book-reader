@@ -10,6 +10,8 @@ export function getDisplayName(component) {
 
 export const cutText = (text, maxLen = 38) => (text.length > maxLen ? `${text.substring(0, maxLen - 3)}...` : text);
 
+export const getBookAuthorNames = authors => authors.map(({ name }) => name).join(', ');
+
 export const cleanObject = object =>
   Object.keys(object)
     .filter(key => !!object[key])
