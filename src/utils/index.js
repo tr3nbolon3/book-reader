@@ -1,18 +1,23 @@
-// import { createBrowserHistory } from 'history';
-// import qs from 'query-string';
+import noop from './noop';
+import upperFirst from './upperFirst';
+import history from './history';
+import getDisplayName from './getDisplayName';
+import cutText from './cutText';
+import getBookAuthorNames from './getBookAuthorNames';
+import cleanObject from './cleanObject';
+import sortDesc from './sortDesc';
+import sortAsc from './sortAsc';
 
-export const noop = () => {};
-export const upperFirst = str => `${str[0].toUpperCase()}${str.slice(1)}`;
+export { noop, upperFirst, history, getDisplayName, cutText, getBookAuthorNames, cleanObject, sortDesc, sortAsc };
 
-export function getDisplayName(component) {
-  return component.displayName || component.name || 'Component';
-}
-
-export const cutText = (text, maxLen = 38) => (text.length > maxLen ? `${text.substring(0, maxLen - 3)}...` : text);
-
-export const getBookAuthorNames = authors => authors.map(({ name }) => name).join(', ');
-
-export const cleanObject = object =>
-  Object.keys(object)
-    .filter(key => !!object[key])
-    .reduce((acc, key) => ({ ...acc, [key]: object[key] }), {});
+export default {
+  noop,
+  upperFirst,
+  history,
+  getDisplayName,
+  cutText,
+  getBookAuthorNames,
+  cleanObject,
+  sortDesc,
+  sortAsc,
+};

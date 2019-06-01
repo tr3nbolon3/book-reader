@@ -35,8 +35,30 @@ const isOpenSignInDialog = handleActions(
   false,
 );
 
+const initialConfirmDialog = {
+  title: '',
+  text: '',
+  confirmText: 'Подтвердить',
+  cancelText: 'Отменить',
+  isOpen: false,
+  onConfirm: () => {},
+};
+
+const confirmDialog = handleActions(
+  {
+    [appActions.openConfirmDialog](state, { payload }) {
+      return { ...state, ...payload, isOpen: true };
+    },
+    [appActions.closeConfirmDialog]() {
+      return initialConfirmDialog;
+    },
+  },
+  initialConfirmDialog,
+);
+
 export default combineReducers({
   notification,
   isOpenSignUpDialog,
   isOpenSignInDialog,
+  confirmDialog,
 });

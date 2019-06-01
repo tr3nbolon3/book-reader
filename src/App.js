@@ -7,6 +7,7 @@ import SignInDialog from '@components/SignInDialog';
 import SignUpDialog from '@components/SignUpDialog';
 import NotificationSystem from '@components/NotificationSystem';
 import FirestoreIsListenersRequested from '@components/FirestoreIsListenersRequested';
+import ConfirmDialog from '@components/ConfirmDialog';
 
 function App() {
   return (
@@ -19,6 +20,7 @@ function App() {
         </Switch>
         <SignInDialog />
         <SignUpDialog />
+        <ConfirmDialog />
         <NotificationSystem />
       </FirestoreIsListenersRequested>
     </Fragment>

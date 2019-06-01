@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { createSelector } from 'reselect';
+import { sortDesc } from '@utils/';
 
 const propsSelector = (state, props) => props;
 
@@ -32,7 +33,7 @@ export const getOrderedComments = createSelector(
   (comments, users) =>
     comments
       .map(({ userId, ...comment }) => ({ user: { id: userId, ...users[userId] }, ...comment }))
-      .sort(({ createdAt: a }, { createdAt: b }) => b - a),
+      .sort((a, b) => sortDesc(a.createdAt, b.createdAt)),
 );
 
 // export const getDataComments = createSelector([]);
@@ -52,7 +53,9 @@ export const getOrderedBooks = createSelector(
     books.map(({ authorIds, genreIds, ...book }) => ({
       genres: genreIds.map(id => ({ id, ...bookGenres[id] })),
       authors: authorIds.map(id => ({ id, ...bookAuthors[id] })),
-      comments: allComments.filter(({ bookId }) => bookId === book.id),
+      comments: allComments
+        .filter(({ bookId }) => bookId === book.id)
+        .sort((a, b) => sortDesc(a.createdAt, b.createdAt)),
       ...book,
     })),
 );

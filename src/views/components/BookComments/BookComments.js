@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 // import * as appSelectors from '@ducks/app/appSelectors';
+import * as appActions from '@ducks/app/appActions';
 import * as firestoreActions from '@ducks/firestore/firestoreActions';
 
 import * as $propTypes from '@prop-types';
@@ -19,7 +20,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import { getUser } from '@ducks/firebase/firebaseSelectors';
 import styles from './BookComments.module.scss';
 
-function BookComments({ user, comments, deleteComment }) {
+function BookComments({ user, comments, openConfirmDialog, deleteComment }) {
   const isEmpty = comments.length === 0;
 
   return (
@@ -43,7 +44,19 @@ function BookComments({ user, comments, deleteComment }) {
                 {isCommentFromCurrentUser && (
                   <ListItemSecondaryAction>
                     <Tooltip title="Удалить комментарий" aria-label="Удалить комментарий">
-                      <IconButton edge="end" aria-label="Удалить комментарий" onClick={() => deleteComment(id)}>
+                      <IconButton
+                        edge="end"
+                        aria-label="Удалить комментарий"
+                        onClick={() =>
+                          openConfirmDialog({
+                            title: 'Вы действительно хотите удалить комментарий?',
+                            text: 'После удаления комментарий нельзя будет восстановить',
+                            cancelText: 'Отменить',
+                            confirmText: 'Удалить',
+                            onConfirm: () => deleteComment(id),
+                          })
+                        }
+                      >
                         <DeleteIcon />
                       </IconButton>
                     </Tooltip>
@@ -70,13 +83,14 @@ BookComments.propTypes = {
   }),
   comments: PropTypes.arrayOf(PropTypes.shape($propTypes.comment)),
   deleteComment: PropTypes.func.isRequired,
+  openConfirmDialog: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
   user: getUser(state),
 });
 
-const mapDispatchToProps = { ...firestoreActions };
+const mapDispatchToProps = { ...firestoreActions, ...appActions };
 
 export default connect(
   mapStateToProps,
