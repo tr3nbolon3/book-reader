@@ -8,14 +8,16 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListItemAvatar from '@material-ui/core/ListItemAvatar';
 
 import UserAvatar from '@UI/UserAvatar';
-import AddCommentForm from '../AddCommentForm';
 
+import { Typography } from '@material-ui/core';
 import styles from './Comments.module.scss';
 
 function Comments({ comments }) {
+  const isEmpty = comments.length === 0;
+
   return (
     <div>
-      <AddCommentForm />
+      {isEmpty && <Typography align="center">Комментариев нет.</Typography>}
       <List className={styles.list}>
         {comments.map(({ id, author, text }, idx) => (
           <React.Fragment key={id}>

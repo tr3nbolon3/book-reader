@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import $propTypes from '@prop-types';
+import * as $propTypes from '@prop-types';
 import { connect } from 'react-redux';
 
 import { MenuItem, Menu, AppBar, Toolbar, Button, IconButton, InputBase, Typography } from '@material-ui/core';

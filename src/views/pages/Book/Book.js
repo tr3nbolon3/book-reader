@@ -11,13 +11,16 @@ import Container from '@UI/Container';
 
 import { Typography, Button, Chip } from '@material-ui/core';
 
-import { getUser } from '@ducks/firebase/firebaseSelectors';
+import { getBook } from '@ducks/firestore/firestoreSelectors';
+import { getIsSignedIn } from '@ducks/firebase/firebaseSelectors';
 import Comments from './Comments';
 import styles from './Book.module.scss';
 import Description from './Description';
+import AddCommentForm from './AddCommentForm';
 
-function Book({ image, author, name, description, comments }) {
-  const backgroundImage = `url(${image})`;
+function Book({ book, isSignedIn }) {
+  const { cover, author, name, description, comments, genres } = book;
+  const backgroundImage = `url(${cover})`;
 
   const renderLeft = (
     <div className={styles.left}>
@@ -43,12 +46,15 @@ function Book({ image, author, name, description, comments }) {
         <Typography className={cn(styles.name, styles.headerText)} variant="headline" paragraph>
           {name}
         </Typography>
-        <div className={styles.tags}>
-          <Chip variant="default" label="компьютерная литература" />
+        <div className={styles.genres}>
+          {genres.map(({ id, name: genreName }) => (
+            <Chip key={id} variant="default" label={genreName} />
+          ))}
         </div>
       </div>
       <Description description={description} />
       <div style={{ marginTop: 24 }}>
+        {isSignedIn && <AddCommentForm />}
         <Comments comments={comments} />
       </div>
     </div>
@@ -66,20 +72,9 @@ function Book({ image, author, name, description, comments }) {
   );
 }
 
-Book.defaultProps = {
-  image: 'https://a.wattpad.com/cover/165002790-352-k993073.jpg',
-  name: 'Альфа и его маленький запрет.',
-  author: 'Алексей Симоненко',
-  description: `«Виля уже имел негативный жизненный опыт (двойное предательство), но романтизма не изжил. Верил в прекрасное. И отражал это в своих стихах. Прекрасными были цветы — садовые и полевые. Что может быть совершеннее ромашки? Кто ее придумал? Всевышний. А как прекрасен грибной дождь с радугой на небе… И человека придумал тот же автор. А такие оттенки, как хитрость, предательство, — это добавили в жизнь сами люди. Всевышний совершенно ни при чем». Виктория Токарева`,
-};
-
 Book.propTypes = {
-  id: PropTypes.number.isRequired,
-  name: PropTypes.string.isRequired,
-  image: PropTypes.string.isRequired,
-  author: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  comments: PropTypes.arrayOf(PropTypes.shape($propTypes.comment)),
+  book: PropTypes.shape($propTypes.book),
+  isSignedIn: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -89,50 +84,9 @@ const mapStateToProps = (state, ownProps) => {
     },
   } = ownProps;
 
-  const author = getUser(state);
-  const comments = [
-    {
-      id: 0,
-      text:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsam distinctio labore esse repudiandae, minima, cupiditate doloremque reprehenderit beatae repellat, impedit voluptate. Labore aut sequi aliquid assumenda voluptate cum veritatis.',
-      author,
-    },
-    {
-      id: 1,
-      text:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsam distinctio labore esse repudiandae, minima, cupiditate doloremque reprehenderit beatae repellat, impedit voluptate. Labore aut sequi aliquid assumenda voluptate cum veritatis.',
-      author,
-    },
-    {
-      id: 2,
-      text:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsam distinctio labore esse repudiandae, minima, cupiditate doloremque reprehenderit beatae repellat, impedit voluptate. Labore aut sequi aliquid assumenda voluptate cum veritatis.',
-      author,
-    },
-    {
-      id: 3,
-      text:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsam distinctio labore esse repudiandae, minima, cupiditate doloremque reprehenderit beatae repellat, impedit voluptate. Labore aut sequi aliquid assumenda voluptate cum veritatis.',
-      author,
-    },
-    {
-      id: 4,
-      text:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsam distinctio labore esse repudiandae, minima, cupiditate doloremque reprehenderit beatae repellat, impedit voluptate. Labore aut sequi aliquid assumenda voluptate cum veritatis.',
-      author,
-    },
-    {
-      id: 5,
-      text:
-        'Lorem ipsum dolor, sit amet consectetur adipisicing elit. Qui ipsam distinctio labore esse repudiandae, minima, cupiditate doloremque reprehenderit beatae repellat, impedit voluptate. Labore aut sequi aliquid assumenda voluptate cum veritatis.',
-      author,
-    },
-  ];
-
   return {
-    ...state,
-    id: Number(id),
-    comments,
+    book: getBook(state, { id }),
+    isSignedIn: getIsSignedIn(state),
   };
 };
 

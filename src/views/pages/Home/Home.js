@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import $propTypes from '@prop-types';
+import * as $propTypes from '@prop-types';
 import cn from 'classnames';
 // import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
@@ -113,10 +113,9 @@ const renderBenefits = (
   </div>
 );
 
-function Home({ fetchBooks, user }) {
+function Home({ user }) {
   return (
     <MainLayout>
-      <button onClick={fetchBooks}>Fetch books</button>
       {renderHero}
       {renderQuote}
       {renderBenefits}
@@ -127,7 +126,6 @@ function Home({ fetchBooks, user }) {
 
 Home.propTypes = {
   user: PropTypes.shape($propTypes.user),
-  fetchBooks: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = state => ({
@@ -140,5 +138,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(Home);
-
-// export default Home;

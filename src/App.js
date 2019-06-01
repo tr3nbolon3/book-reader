@@ -6,18 +6,21 @@ import routes from '@routes';
 import SignInDialog from '@components/SignInDialog';
 import SignUpDialog from '@components/SignUpDialog';
 import NotificationSystem from '@components/NotificationSystem';
+import FirestoreIsListenersRequested from '@components/FirestoreIsListenersRequested';
 
 function App() {
   return (
     <Fragment>
-      <Switch>
-        {routes.map(({ name, ...rest }) => (
-          <Route key={name} {...rest} />
-        ))}
-      </Switch>
-      <SignInDialog />
-      <SignUpDialog />
-      <NotificationSystem />
+      <FirestoreIsListenersRequested>
+        <Switch>
+          {routes.map(({ name, ...rest }) => (
+            <Route key={name} {...rest} />
+          ))}
+        </Switch>
+        <SignInDialog />
+        <SignUpDialog />
+        <NotificationSystem />
+      </FirestoreIsListenersRequested>
     </Fragment>
   );
 }

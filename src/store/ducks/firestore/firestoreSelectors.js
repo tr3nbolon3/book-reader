@@ -1,4 +1,17 @@
+import _ from 'lodash';
 import { createSelector } from 'reselect';
+
+const propsSelector = (state, props) => props;
+
+// STATUS SELECTORS
+export const getIsListenersRequested = state => {
+  const { requested } = state.firestore.firestore.status;
+  const requestedValues = Object.values(requested);
+
+  if (!requestedValues.length) return false;
+
+  return !requestedValues.includes(false);
+};
 
 // USERS SELECTORS
 export const getDataUsers = state => state.firestore.firestore.data.users;
@@ -22,11 +35,11 @@ export const getDataComments = state => getPureDataComments(state);
 
 // BOOK GENRES SELECTORS
 export const getDataGenres = state => state.firestore.firestore.data.genres;
-export const getOrderedGenres = state => state.firestore.firestore.ordered.genres;
+// export const getOrderedGenres = state => state.firestore.firestore.ordered.genres;
 
 // BOOKS SELECTORS
-export const getDataBooks = state => state.firestore.firestore.data.books;
 export const getPureOrderedBooks = state => state.firestore.firestore.ordered.books;
+export const getPureDataBooks = state => state.firestore.firestore.data.books;
 
 export const getOrderedBooks = createSelector(
   [getPureOrderedBooks, getDataAuthors, getDataGenres, getOrderedComments],
@@ -37,4 +50,14 @@ export const getOrderedBooks = createSelector(
       comments: allComments.filter(({ bookId }) => bookId === book.id),
       ...book,
     })),
+);
+
+export const getDataBooks = createSelector(
+  [getOrderedBooks],
+  books => _.keyBy(books, 'id'),
+);
+
+export const getBook = createSelector(
+  [getDataBooks, propsSelector],
+  (books, { id }) => books[id],
 );

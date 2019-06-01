@@ -14,7 +14,7 @@ import { getOrderedBooks } from '@ducks/firestore/firestoreSelectors';
 
 // import * as paths from '@routes/paths';
 
-function Library({ books }) {
+function Books({ books }) {
   return (
     <MainLayout>
       <Container style={{ padding: '40px 0' }}>
@@ -24,12 +24,12 @@ function Library({ books }) {
   );
 }
 
-Library.defaultProps = {
+Books.defaultProps = {
   books: [],
 };
 
-Library.propTypes = {
-  books: PropTypes.arrayOf($propTypes.book),
+Books.propTypes = {
+  books: PropTypes.arrayOf(PropTypes.shape($propTypes.book)),
 };
 
 const mapStateToProps = state => ({
@@ -41,4 +41,4 @@ const mapDispatchToProps = { ...appActions };
 export default connect(
   mapStateToProps,
   mapDispatchToProps,
-)(Library);
+)(Books);
