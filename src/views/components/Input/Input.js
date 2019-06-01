@@ -12,13 +12,13 @@ function Input(props) {
         return (
           <TextField
             {...input}
-            {...rest}
             className={styles.textField}
             onChange={({ target }) => input.onChange(target.value)}
             error={hasError}
             variant="outlined"
             margin="normal"
             helperText={hasError ? meta.error : ''}
+            {...rest}
           />
         );
       }}

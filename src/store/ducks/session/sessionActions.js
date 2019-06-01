@@ -51,6 +51,7 @@ export const signUp = ({ firstName, lastName, email, password }) => async (
       .collection('users')
       .doc(user.uid)
       .set({
+        id: user.uid,
         firstName,
         lastName,
         initials: `${firstName[0]}${lastName[0]}`,

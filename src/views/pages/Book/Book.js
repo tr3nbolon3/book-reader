@@ -13,18 +13,19 @@ import { Typography, Button, Chip } from '@material-ui/core';
 
 import { getBook } from '@ducks/firestore/firestoreSelectors';
 import { getIsSignedIn } from '@ducks/firebase/firebaseSelectors';
-import Comments from './Comments';
+import AddBookCommentForm from '@components/AddBookCommentForm';
+
+import BookComments from '@components/BookComments';
 import styles from './Book.module.scss';
 import Description from './Description';
-import AddCommentForm from './AddCommentForm';
 
 function Book({ book, isSignedIn }) {
   const { cover, author, name, description, comments, genres } = book;
-  const backgroundImage = `url(${cover})`;
+  // const backgroundImage = `url(${cover})`;
 
   const renderLeft = (
     <div className={styles.left}>
-      <div className={styles.image} style={{ backgroundImage }} />
+      <img className={styles.image} src={cover} alt={name} />
       <div className={styles.buttons}>
         <Button className={styles.readBtn} size="large" color="primary" variant="contained">
           Читать
@@ -48,14 +49,14 @@ function Book({ book, isSignedIn }) {
         </Typography>
         <div className={styles.genres}>
           {genres.map(({ id, name: genreName }) => (
-            <Chip key={id} variant="default" label={genreName} />
+            <Chip key={id} variant="default" label={genreName} classes={{ root: styles.genresGenre }} />
           ))}
         </div>
       </div>
       <Description description={description} />
       <div style={{ marginTop: 24 }}>
-        {isSignedIn && <AddCommentForm />}
-        <Comments comments={comments} />
+        {isSignedIn && <AddBookCommentForm bookId={book.id} />}
+        <BookComments comments={comments} />
       </div>
     </div>
   );

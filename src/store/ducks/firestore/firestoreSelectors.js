@@ -3,6 +3,8 @@ import { createSelector } from 'reselect';
 
 const propsSelector = (state, props) => props;
 
+export const getIsAddingComment = state => state.firestore.isAddingComment;
+
 // STATUS SELECTORS
 export const getIsListenersRequested = state => {
   const { requested } = state.firestore.firestore.status;
@@ -27,7 +29,10 @@ export const getPureOrderedComments = state => state.firestore.firestore.ordered
 
 export const getOrderedComments = createSelector(
   [getPureOrderedComments, getDataUsers],
-  (comments, users) => comments.map(({ userId, ...comment }) => ({ user: users[userId], ...comment })),
+  (comments, users) =>
+    comments
+      .map(({ userId, ...comment }) => ({ user: { id: userId, ...users[userId] }, ...comment }))
+      .sort(({ createdAt: a }, { createdAt: b }) => b - a),
 );
 
 // export const getDataComments = createSelector([]);

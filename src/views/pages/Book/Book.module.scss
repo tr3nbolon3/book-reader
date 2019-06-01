@@ -20,6 +20,7 @@
   width: 216px;
   height: 288px;
   margin-bottom: 16px;
+  object-fit: cover;
   box-shadow: 0 0 10px -4px white;
   background-size: cover;
   background-repeat: no-repeat;
@@ -66,4 +67,10 @@
 
 .name {
 
+}
+
+.genres {
+  &Genre + &Genre {
+    margin-left: 8px;
+  }
 }

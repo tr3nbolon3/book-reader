@@ -16,7 +16,20 @@ const isBookLoading = handleActions(
   false,
 );
 
+const isAddingComment = handleActions(
+  {
+    [firestoreActions.addCommentRequest]() {
+      return true;
+    },
+    [combineActions(firestoreActions.addCommentFailure, firestoreActions.addCommentSuccess)]() {
+      return false;
+    },
+  },
+  false,
+);
+
 export default combineReducers({
   isBookLoading,
+  isAddingComment,
   firestore: firestoreReducer,
 });
