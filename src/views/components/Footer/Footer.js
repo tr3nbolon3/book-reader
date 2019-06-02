@@ -1,5 +1,4 @@
 import React from 'react';
-import { indigo } from '@material-ui/core/colors';
 import { Typography } from '@material-ui/core';
 
 import Logo from '@UI/Logo';
@@ -9,11 +8,9 @@ import * as paths from '@routes/paths';
 
 import styles from './Footer.module.scss';
 
-const background = indigo[500];
-
 function Footer() {
   return (
-    <div className={styles.root} style={{ background }}>
+    <div className={styles.root}>
       <Logo className={styles.logo} />
       <div className={styles.links}>
         <Link className={styles.link} to={paths.USER_AGREEMENT}>

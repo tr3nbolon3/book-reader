@@ -69,3 +69,7 @@ export const getBook = createSelector(
   [getDataBooks, propsSelector],
   (books, { id }) => books[id],
 );
+
+// SUBSCRIBES SELECTORS
+export const getOrderedSubscribes = state => state.firestore.firestore.ordered.subscribes;
+export const getDataSubscribes = state => state.firestore.firestore.data.subscribes;

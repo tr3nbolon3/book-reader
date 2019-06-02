@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import * as $propTypes from '@prop-types';
 import { connect } from 'react-redux';
 
-import { MenuItem, Menu, AppBar, Toolbar, Button, IconButton, InputBase, Typography } from '@material-ui/core';
+import { MenuItem, AppBar, Toolbar, Button, IconButton, InputBase, Typography, Popover } from '@material-ui/core';
 import { Search as SearchIcon } from '@material-ui/icons';
 
 import * as appActions from '@ducks/app/appActions';
@@ -17,7 +17,7 @@ import history from '@utils/history';
 import Logo from '@UI/Logo';
 import Link from '@UI/Link';
 
-import CurrentSubscribeCard from '@UI/CurrentSubscribeCard';
+import CurrentSubscribeCard from '@components/CurrentSubscribeCard';
 import CurrentUserAvatar from '@components/CurrentUserAvatar';
 import styles from './Header.module.scss';
 // import styles from './styles';
@@ -46,14 +46,15 @@ class Header extends React.Component {
     const isMenuOpen = Boolean(anchorEl);
 
     return (
-      <Menu
+      <Popover
         anchorEl={anchorEl}
-        anchorOrigin={{ vertical: 'top', horizontal: 'right' }}
+        anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
         open={isMenuOpen}
         onClose={this.handleMenuClose}
+        classes={{ paper: styles.menu }}
       >
-        <div>{user.fullName}</div>
+        <div className={styles.menuUser}>{user.fullName}</div>
         <MenuItem
           onClick={this.handleClickMenuItem(() => {
             history.push(paths.USER_PROFILE);
@@ -66,18 +67,11 @@ class Header extends React.Component {
             history.push(paths.MY_BOOKS);
           })}
         >
-          Мои книги
+          Моя библиотека
         </MenuItem>
         <CurrentSubscribeCard />
-        {/* <MenuItem
-          onClick={this.handleClickMenuItem(() => {
-            history.push(paths.SUBSCRIBE);
-          })}
-        >
-          Подписка
-        </MenuItem> */}
         <MenuItem onClick={this.handleClickMenuItem(this.props.signOut)}>Выйти</MenuItem>
-      </Menu>
+      </Popover>
     );
   };
 
@@ -117,38 +111,34 @@ class Header extends React.Component {
     const { isSignedIn } = this.props;
 
     return (
-      <div className={styles.root}>
-        <AppBar position="static">
-          <Toolbar className={styles.toolbar}>
-            <Link to={paths.HOME}>
-              <Logo />
-            </Link>
-            <div className={styles.toolbarLeft}>
-              <div className={styles.search}>
-                <div className={styles.searchIcon}>
-                  <SearchIcon />
-                </div>
-                <InputBase
-                  placeholder="Поиск..."
-                  classes={{
-                    root: styles.inputRoot,
-                    input: styles.inputInput,
-                  }}
-                />
+      <AppBar position="static" color="inherit" classes={{ root: styles.root }}>
+        <Toolbar className={styles.toolbar} color="inherit">
+          <Link to={paths.HOME}>
+            <Logo />
+          </Link>
+          <div className={styles.toolbarLeft}>
+            <div className={styles.search}>
+              <div className={styles.searchIcon}>
+                <SearchIcon />
               </div>
-              {/* <div className={styles.grow}> */}
-              <Link to={paths.BOOKS}>
-                <Typography color="inherit" noWrap>
-                  Каталог книг
-                </Typography>
-              </Link>
+              <InputBase
+                placeholder="Поиск..."
+                classes={{
+                  root: styles.inputRoot,
+                  input: styles.inputInput,
+                }}
+              />
             </div>
-            <div className={styles.toolbarRight}>
-              {isSignedIn ? renderSignedInControls() : renderSignedOutControls()}
-            </div>
-          </Toolbar>
-        </AppBar>
-      </div>
+            {/* <div className={styles.grow}> */}
+            <Link to={paths.BOOKS}>
+              <Typography color="inherit" noWrap>
+                Каталог книг
+              </Typography>
+            </Link>
+          </div>
+          <div className={styles.toolbarRight}>{isSignedIn ? renderSignedInControls() : renderSignedOutControls()}</div>
+        </Toolbar>
+      </AppBar>
     );
   }
 }
