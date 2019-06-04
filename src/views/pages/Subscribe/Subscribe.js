@@ -1,47 +1,39 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import * as $propTypes from '@prop-types';
 import { connect } from 'react-redux';
+import $subscribes from '@constants/subscribes';
+
 // import * as appSelectors from '@ducks/app/appSelectors';
 import * as appActions from '@ducks/app/appActions';
 
 import MainLayout from '@layouts/MainLayout';
+import { getOrderedSubscribes } from '@ducks/firestore/firestoreSelectors';
+import Container from '@UI/Container';
+import SubscribeCard from '@UI/SubscribeCard';
 
-// class Subscribe extends React.Component {
-//   static propTypes = {
-//     name: PropTypes.string.isRequired,
-//   };
+import styles from './Subscribe.module.scss';
 
-//   static defaultProps = {
-//     name: 'Subscribe',
-//   };
+function Subscribe({ subscribes }) {
+  const normalizedSubscribes = subscribes.filter(({ id }) => id !== $subscribes.STANDARD);
 
-//   render() {
-//     return (
-//       <MainLayout>
-//         <p>{this.props.name}</p>
-//       </MainLayout>
-//     );
-//   }
-// }
-
-function Subscribe(props) {
   return (
     <MainLayout>
-      <p>{props.name}</p>
+      <Container className={styles.container}>
+        {normalizedSubscribes.map(subscribe => (
+          <SubscribeCard key={subscribe.id} subscribe={subscribe} />
+        ))}
+      </Container>
     </MainLayout>
   );
 }
 
-Subscribe.defaultProps = {
-  name: 'Subscribe',
-};
-
 Subscribe.propTypes = {
-  name: PropTypes.string.isRequired,
+  subscribes: PropTypes.arrayOf(PropTypes.shape($propTypes.subscribe)),
 };
 
 const mapStateToProps = state => ({
-  ...state,
+  subscribes: getOrderedSubscribes(state),
 });
 
 const mapDispatchToProps = { ...appActions };

@@ -18,7 +18,7 @@ function Books({ books }) {
   return (
     <MainLayout>
       <Container style={{ padding: '40px 0' }}>
-        <BooksSection title="Бестселеры" books={books} />
+        <BooksSection title="Бестселлеры" books={books} />
       </Container>
     </MainLayout>
   );

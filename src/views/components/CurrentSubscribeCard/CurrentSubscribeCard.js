@@ -10,22 +10,15 @@ import { getOrderedSubscribes } from '@ducks/firestore/firestoreSelectors';
 
 import Link from '@UI/Link';
 import * as paths from '@routes/paths';
-import $subscribes from '@constants/subscribes';
+import subscribeColors from '@constants/subscribeColors';
 
 import styles from './CurrentSubscribeCard.module.scss';
-
-const colors = {
-  [$subscribes.BRONZE]: '#A77044',
-  [$subscribes.GOLD]: '#FEE101',
-  [$subscribes.SILVER]: '#D7D7D7',
-  [$subscribes.STANDARD]: '#9ED9DF',
-};
 
 function CurrentSubscribeCard({ user, subscribes }) {
   const { currentSubscribeId } = user;
   const currentSubscribe = subscribes.find(({ id }) => currentSubscribeId === id);
 
-  const color = colors[currentSubscribeId];
+  const color = subscribeColors[currentSubscribeId];
   const backgroundImage = `linear-gradient(135deg, ${color} 60%, white)`;
 
   return (

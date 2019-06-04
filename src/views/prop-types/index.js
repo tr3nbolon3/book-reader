@@ -54,6 +54,7 @@ export const subscribe = {
   description: PropTypes.string.isRequired,
   durationType: PropTypes.string,
   duration: PropTypes.string,
+  cost: PropTypes.number.isRequired,
 };
 
 const book = {

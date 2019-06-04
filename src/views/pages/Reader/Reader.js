@@ -1,8 +1,11 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import ePub from 'epubjs';
-import { CircularProgress } from '@material-ui/core';
+// import { CircularProgress } from '@material-ui/core';
 import MainLayout from '@layouts/MainLayout';
+import { getBook } from '@ducks/firestore/firestoreSelectors';
+import AbsoluteSpinner from '@UI/AbsoluteSpinner';
 
 class Reader extends Component {
   state = {
@@ -12,10 +15,16 @@ class Reader extends Component {
 
   bookRendition = null; // set when component did mount
 
-  book = ePub('http://localhost:3000/books/flatland.epub');
-
   componentDidMount() {
-    this.bookRendition = this.book.renderTo('bookViewer', { width: '100%', height: 400, spread: 'always' });
+    // const { book: {  } } = this.props;
+    this.book = ePub(`${window.location.origin}/books/flatland.epub`);
+    this.bookRendition = this.book.renderTo('bookViewer', {
+      width: '100%',
+      flex: 1,
+      height: 'calc(100vh - 152px - 84px)',
+      minHeight: '600px',
+      spread: 'always',
+    });
     this.bookRendition.display();
 
     this.book.ready.then(() => this.setState({ isBookReady: true }));
@@ -35,9 +44,9 @@ class Reader extends Component {
     const isShowProgress = !isBookReady || hasDelay;
 
     return (
-      <MainLayout>
+      <MainLayout mainProps={{ style: { display: 'flex', flexDirection: 'column' } }}>
         {/* BOOK VIEWER CONTAINER */}
-        <div style={isShowProgress ? { visibility: 'hidden', opacity: 0 } : {}}>
+        <div style={isShowProgress ? { visibility: 'hidden', opacity: 0 } : { flex: 1 }}>
           <div id="bookViewer" />
           <div
             style={{
@@ -53,7 +62,7 @@ class Reader extends Component {
             </button>
           </div>
         </div>
-        {isShowProgress && <CircularProgress />}
+        {isShowProgress && <AbsoluteSpinner />}
       </MainLayout>
     );
   }
@@ -61,6 +70,24 @@ class Reader extends Component {
 
 Reader.propTypes = {
   children: PropTypes.any,
+  book: PropTypes.object.isRequired,
 };
 
-export default Reader;
+const mapStateToProps = (state, ownProps) => {
+  const {
+    match: {
+      params: { id },
+    },
+  } = ownProps;
+
+  return {
+    book: getBook(state, { id }),
+  };
+};
+
+// const mapDispatchToProps = { ...appActions };
+
+export default connect(
+  mapStateToProps,
+  // mapDispatchToProps,
+)(Reader);

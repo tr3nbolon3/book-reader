@@ -16,24 +16,34 @@ import { getIsSignedIn } from '@ducks/firebase/firebaseSelectors';
 import AddBookCommentForm from '@components/AddBookCommentForm';
 
 import BookComments from '@components/BookComments';
+// import * as paths from '@routes/paths';
 import styles from './Book.module.scss';
 import Description from './Description';
+import { history } from '@utils/';
 
 function Book({ book, isSignedIn }) {
-  const { cover, author, name, description, comments, genres } = book;
+  const { id, cover, author, name, description, comments, genres } = book;
   // const backgroundImage = `url(${cover})`;
 
   const renderLeft = (
     <div className={styles.left}>
       <img className={styles.image} src={cover} alt={name} />
       <div className={styles.buttons}>
-        <Button className={styles.readBtn} size="large" color="primary" variant="contained">
+        <Button
+          className={styles.readBtn}
+          size="large"
+          color="primary"
+          variant="contained"
+          onClick={() => history.push(`/reader/${id}`)}
+        >
           Читать
         </Button>
-        <Button className={styles.addBtn} size="large" color="primary" variant="contained">
-          На полку
-          <div className={styles.addBtnPlus}>+</div>
-        </Button>
+        {isSignedIn && (
+          <Button className={styles.addBtn} size="large" color="primary" variant="contained">
+            На полку
+            <div className={styles.addBtnPlus}>+</div>
+          </Button>
+        )}
       </div>
     </div>
   );
@@ -48,8 +58,8 @@ function Book({ book, isSignedIn }) {
           {name}
         </Typography>
         <div className={styles.genres}>
-          {genres.map(({ id, name: genreName }) => (
-            <Chip key={id} variant="default" label={genreName} classes={{ root: styles.genresGenre }} />
+          {genres.map(({ id: genreId, name: genreName }) => (
+            <Chip key={genreId} variant="default" label={genreName} classes={{ root: styles.genresGenre }} />
           ))}
         </div>
       </div>

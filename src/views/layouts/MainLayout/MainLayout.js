@@ -6,11 +6,13 @@ import Footer from '@components/Footer';
 
 import styles from './MainLayout.module.scss';
 
-function MainLayout({ children, headerProps, footerProps }) {
+function MainLayout({ children, headerProps, mainProps, footerProps }) {
   return (
     <div className={styles.root}>
       <Header {...headerProps} />
-      <div className={styles.main}>{children}</div>
+      <div className={styles.main} {...mainProps}>
+        {children}
+      </div>
       <Footer {...footerProps} />
     </div>
   );
@@ -24,6 +26,7 @@ MainLayout.defaultProps = {
 
 MainLayout.propTypes = {
   children: PropTypes.any,
+  mainProps: PropTypes.object,
   headerProps: PropTypes.shape(Header.propTypes),
   footerProps: PropTypes.shape(Footer.propTypes),
 };
