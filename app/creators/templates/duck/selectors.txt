@@ -1,0 +1,8 @@
+import { createSelector } from 'reselect';
+
+export const get{upperFirstName}Part = state => state.{name}.{name}Part;
+
+export const get{upperFirstName}PartFiltered = createSelector(
+  get{upperFirstName}Part,
+  {name}Part => {name}Part.filter(Boolean),
+);

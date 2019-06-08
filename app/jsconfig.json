@@ -1,0 +1,19 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@UI/*": ["./src/views/UI/*"],
+      "@components/*": ["./src/views/components/*"],
+      "@enhancers/*": ["./src/views/enhancers/*"],
+      "@layouts/*": ["./src/views/layouts/*"],
+      "@pages/*": ["./src/views/pages/*"],
+      "@prop-types/*": ["./src/views/prop-types/*"],
+      "@ducks/*": ["./src/store/ducks/*"],
+      "@routes/*": ["./src/routes/*"],
+      "@utils/*": ["./src/utils/*"],
+      "@src/*": ["./src/*", "./src"],
+      "@constants": ["./src/constants/*"]
+    }
+  },
+  "exclude": ["node_modules"]
+}

@@ -1,0 +1,115 @@
+@import 'src/breakpoints';
+
+.hero {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: calc(100vh - 64px);
+  color: white;
+  background-color: dimgrey;
+  background-image: url(./books-heap.jpg);
+  background-image: url(./man-with-laptop.jpg);
+  background-image: url(./man-with-pc.jpg);
+  background-image: url(./woman-with-laptop.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  position: relative;
+
+  &Underlay {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+  }
+
+  &Inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+  }
+
+  &Title {
+    font-size: 54px!important;
+    font-weight: bold!important;
+    text-shadow: 0 0 20px rgba(black, 0.5);
+    position: relative;
+
+    @media (max-width: $sm) {
+      font-size: 32px!important;
+    }
+  }
+
+  &Subtitle {
+    font-size: 32px!important;
+
+    @media (max-width: $sm) {
+      font-size: 24px!important;
+    }
+  }
+
+  &Button {
+    margin-top: 24px!important;
+  }
+}
+
+.quote {
+  padding: 24px 0px;
+  background: #f3f6f9;
+
+  &Paragraph {
+    font-size: 24!important;
+
+    @media (max-width: $sm) {
+      font-size: 18px!important;
+    }
+  }
+
+  &Cite {
+    font-size: 14px;
+  }
+}
+
+.section {
+  padding: 48px 0;
+
+  @media (max-width: $sm) {
+    padding: 24px 0;
+  }
+
+  &Header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  &Title {
+    font-size: 32px!important;
+
+    @media (max-width: $sm) {
+      font-size: 24px!important;
+    }
+  }
+}
+
+.benefits {
+  display: flex;
+}
+
+.benefit {
+  text-align: center;
+  flex: 1 1 50%;
+  margin: 12px;
+
+  &Header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+.feedback {
+  background-color: #f3f6f9;
+}

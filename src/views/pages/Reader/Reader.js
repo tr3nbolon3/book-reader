@@ -46,7 +46,7 @@ class Reader extends Component {
     return (
       <MainLayout mainProps={{ style: { display: 'flex', flexDirection: 'column' } }}>
         {/* BOOK VIEWER CONTAINER */}
-        <div style={isShowProgress ? { visibility: 'hidden', opacity: 0 } : { flex: 1 }}>
+        <div style={isShowProgress ? { visibility: 'hidden', opacity: 0 } : {}}>
           <div id="bookViewer" />
           <div
             style={{
