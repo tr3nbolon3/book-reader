@@ -12,6 +12,7 @@ import { getOrderedSubscribes } from '@ducks/firestore/firestoreSelectors';
 import Container from '@UI/Container';
 import SubscribeCard from '@UI/SubscribeCard';
 
+import { Typography } from '@material-ui/core';
 import styles from './Subscribe.module.scss';
 
 function Subscribe({ subscribes }) {
@@ -20,9 +21,14 @@ function Subscribe({ subscribes }) {
   return (
     <MainLayout>
       <Container className={styles.container}>
-        {normalizedSubscribes.map(subscribe => (
-          <SubscribeCard key={subscribe.id} subscribe={subscribe} />
-        ))}
+        <Typography variant="display1" component="h2" paragraph align="center">
+          Подписка
+        </Typography>
+        <div className={styles.subscribes}>
+          {normalizedSubscribes.map(subscribe => (
+            <SubscribeCard key={subscribe.id} subscribe={subscribe} />
+          ))}
+        </div>
       </Container>
     </MainLayout>
   );

@@ -35,6 +35,18 @@ const isOpenSignInDialog = handleActions(
   false,
 );
 
+const isOpenBookAccessRestrictionDialog = handleActions(
+  {
+    [appActions.openBookAccessRestrictionDialog]() {
+      return true;
+    },
+    [appActions.closeBookAccessRestrictionDialog]() {
+      return false;
+    },
+  },
+  false,
+);
+
 const initialConfirmDialog = {
   title: '',
   text: '',
@@ -58,7 +70,8 @@ const confirmDialog = handleActions(
 
 export default combineReducers({
   notification,
+  confirmDialog,
   isOpenSignUpDialog,
   isOpenSignInDialog,
-  confirmDialog,
+  isOpenBookAccessRestrictionDialog,
 });

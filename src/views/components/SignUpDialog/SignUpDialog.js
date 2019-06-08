@@ -20,7 +20,7 @@ import styles from './SignUpDialog.module.scss';
 
 function SignUpDialog({ isLoading, signUp, isOpen, closeSignUpDialog }) {
   return (
-    <Dialog open={isOpen} onClose={closeSignUpDialog} scroll="body" maxWidth="sm">
+    <Dialog open={isOpen} onClose={closeSignUpDialog} maxWidth="sm">
       {isLoading && <AbsoluteSpinner />}
       <Form onSubmit={signUp}>
         {({ values }) => (

@@ -1,5 +1,0 @@
-import { createAction } from 'redux-actions';
-import * as {name}Types from './{name}Types';
-
-export const firstAction = createAction({name}Types.FIRST_ACTION);
-export const secondAction = createAction({name}Types.SECOND_ACTION);

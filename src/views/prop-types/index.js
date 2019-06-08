@@ -24,8 +24,7 @@ export const user = {
   fullName: PropTypes.string,
   initials: PropTypes.string,
   avatarUrl: PropTypes.string,
-  currentSubscribeId: PropTypes.oneOf([subscribes.BRONZE, subscribes.GOLD, subscribes.SILVER, subscribes.STANDARD])
-    .isRequired,
+  currentSubscribeId: PropTypes.oneOf([subscribes.BRONZE, subscribes.GOLD, subscribes.SILVER, subscribes.STANDARD]),
   birthday: PropTypes.string,
   gender: PropTypes.oneOf([gender.FEMALE, gender.MALE]),
   subscribeAt: PropTypes.string,
@@ -53,11 +52,11 @@ export const subscribe = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   durationType: PropTypes.string,
-  duration: PropTypes.string,
+  duration: numberOrString,
   cost: PropTypes.number.isRequired,
 };
 
-const book = {
+export const book = {
   id: numberOrString.isRequired,
   url: PropTypes.string.isRequired,
   cover: PropTypes.string.isRequired,
@@ -65,7 +64,7 @@ const book = {
   name: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   genres: PropTypes.arrayOf(PropTypes.shape(genre)),
-  accessRestriction: PropTypes.oneOf([accessRestrictions.FREE, accessRestrictions.SUBSCRIBE]),
+  accessRestrictionId: PropTypes.oneOf([accessRestrictions.FREE, accessRestrictions.SUBSCRIBE]),
   comments: PropTypes.arrayOf(PropTypes.shape(comment)).isRequired,
 };
 

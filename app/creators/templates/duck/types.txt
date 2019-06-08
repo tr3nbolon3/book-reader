@@ -1,2 +1,0 @@
-export const FIRST_ACTION = '{name}/FIRST_ACTION';
-export const SECOND_ACTION = '{name}/SECOND_ACTION';

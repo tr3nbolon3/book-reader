@@ -8,6 +8,7 @@ import SignUpDialog from '@components/SignUpDialog';
 import NotificationSystem from '@components/NotificationSystem';
 import FirestoreIsListenersRequested from '@components/FirestoreIsListenersRequested';
 import ConfirmDialog from '@components/ConfirmDialog';
+import BookAccessRestrictionDialog from '@components/BookAccessRestrictionDialog';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
         <SignInDialog />
         <SignUpDialog />
         <ConfirmDialog />
+        <BookAccessRestrictionDialog />
         <NotificationSystem />
       </FirestoreIsListenersRequested>
     </Fragment>

@@ -10,6 +10,9 @@ export const closeSignInDialog = createAction(appTypes.CLOSE_SIGN_IN_DIALOG);
 export const openSignUpDialog = createAction(appTypes.OPEN_SIGN_UP_DIALOG);
 export const closeSignUpDialog = createAction(appTypes.CLOSE_SIGN_UP_DIALOG);
 
+export const openBookAccessRestrictionDialog = createAction(appTypes.OPEN_BOOK_ACCESS_RESTRICTION_DIALOG);
+export const closeBookAccessRestrictionDialog = createAction(appTypes.CLOSE_BOOK_ACCESS_RESTRICTION_DIALOG);
+
 export const openConfirmDialog = createAction(appTypes.OPEN_CONFIRM_DIALOG);
 
 export const cleanConfirmDialog = createAction(appTypes.CLEAN_CONFIRM_DIALOG);

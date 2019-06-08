@@ -14,16 +14,16 @@ import Input from '@components/Input';
 
 import { required } from '@utils/validate';
 
-import TextDivider from '@UI/TextDivider';
-import FbButton from '@UI/FbButton';
-import GoogleButton from '@UI/GoogleButton';
-import VkButton from '@UI/VkButton';
+// import TextDivider from '@UI/TextDivider';
+// import FbButton from '@UI/FbButton';
+// import GoogleButton from '@UI/GoogleButton';
+// import VkButton from '@UI/VkButton';
 import AbsoluteSpinner from '@UI/AbsoluteSpinner';
 import styles from './SignInDialog.module.scss';
 
 function SignInDialog({ isLoading, signIn, isOpen, closeSignInDialog }) {
   return (
-    <Dialog open={isOpen} onClose={closeSignInDialog} scroll="body" maxWidth="xs">
+    <Dialog open={isOpen} onClose={closeSignInDialog} maxWidth="xs">
       {isLoading && <AbsoluteSpinner />}
       <Form onSubmit={signIn}>
         {() => (
@@ -34,15 +34,15 @@ function SignInDialog({ isLoading, signIn, isOpen, closeSignInDialog }) {
                 <Input name="email" label="Почта" validate={required()} />
                 <Input type="password" name="password" label="Пароль" validate={required()} />
               </div>
-              <TextDivider text="либо войти через соц.сети" />
+              {/* <TextDivider text="либо войти через соц.сети" />
               <div className={styles.socialButtons}>
                 <FbButton />
                 <GoogleButton />
                 <VkButton />
-              </div>
+              </div> */}
             </DialogContent>
             <DialogActions>
-              <Button>Восстановить пароль</Button>
+              {/* <Button>Восстановить пароль</Button> */}
               <Button type="submit">Войти</Button>
             </DialogActions>
           </div>

@@ -19,8 +19,9 @@
   width: 216px;
   height: 288px;
   margin-bottom: 16px;
-  object-fit: cover;
+  object-fit: contain;
   box-shadow: 0 0 10px -4px white;
+  background-color: black;
   background-size: cover;
   background-repeat: no-repeat;
 }

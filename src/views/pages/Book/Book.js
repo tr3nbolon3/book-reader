@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import $propTypes from '@prop-types';
+import * as $propTypes from '@prop-types';
 import cn from 'classnames';
 import { connect } from 'react-redux';
 // import * as appSelectors from '@ducks/app/appSelectors';
@@ -12,17 +12,25 @@ import Container from '@UI/Container';
 import { Typography, Button, Chip } from '@material-ui/core';
 
 import { getBook } from '@ducks/firestore/firestoreSelectors';
-import { getIsSignedIn } from '@ducks/firebase/firebaseSelectors';
+import { getIsSignedIn, getUser } from '@ducks/firebase/firebaseSelectors';
 import AddBookCommentForm from '@components/AddBookCommentForm';
 
 import BookComments from '@components/BookComments';
 // import * as paths from '@routes/paths';
+import accessRestrictions from '@constants/accessRestrictions';
+import subscribes from '@constants/subscribes';
+
 import styles from './Book.module.scss';
 import Description from './Description';
-import { history } from '@utils/';
+import { history, getBookAuthorNames } from '@utils/';
 
-function Book({ book, isSignedIn }) {
-  const { id, cover, author, name, description, comments, genres } = book;
+function Book({ book, isSignedIn, user, openBookAccessRestrictionDialog }) {
+  const { id, accessRestrictionId, cover, authors, name, description, comments, genres } = book;
+  const canRead = accessRestrictionId === accessRestrictions.FREE || user.currentSubscribeId !== subscribes.STANDARD;
+  console.log('book', book);
+  console.log('accessRestrictionId', accessRestrictionId);
+  console.log('user.currentSubscribeId', user.currentSubscribeId);
+  console.log('canRead', canRead);
   // const backgroundImage = `url(${cover})`;
 
   const renderLeft = (
@@ -34,7 +42,7 @@ function Book({ book, isSignedIn }) {
           size="large"
           color="primary"
           variant="contained"
-          onClick={() => history.push(`/reader/${id}`)}
+          onClick={canRead ? () => history.push(`/reader/${id}`) : openBookAccessRestrictionDialog}
         >
           Читать
         </Button>
@@ -52,7 +60,7 @@ function Book({ book, isSignedIn }) {
     <div className={styles.right}>
       <div className={styles.header}>
         <Typography className={cn(styles.author, styles.headerText)} variant="subheading">
-          {author}
+          {getBookAuthorNames(authors)}
         </Typography>
         <Typography className={cn(styles.name, styles.headerText)} variant="headline" paragraph>
           {name}
@@ -85,7 +93,9 @@ function Book({ book, isSignedIn }) {
 
 Book.propTypes = {
   book: PropTypes.shape($propTypes.book),
+  user: PropTypes.shape($propTypes.user),
   isSignedIn: PropTypes.bool.isRequired,
+  openBookAccessRestrictionDialog: PropTypes.func.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -97,6 +107,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     book: getBook(state, { id }),
+    user: getUser(state),
     isSignedIn: getIsSignedIn(state),
   };
 };

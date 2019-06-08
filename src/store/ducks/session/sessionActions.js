@@ -20,7 +20,11 @@ export const signIn = ({ email, password }) => async (dispatch, getState, { getF
     const firebase = getFirebase();
     await firebase.auth().signInWithEmailAndPassword(email, password);
 
-    history.push(paths.BOOKS);
+    const isHomeCurrentLocation = history.location.pathname === paths.HOME;
+    if (isHomeCurrentLocation) {
+      history.push(paths.BOOKS);
+    }
+
     dispatch(closeSignInDialog());
 
     dispatch(showNotification({ type: 'success', message: 'Вход успешно осуществлен!' }));
@@ -85,7 +89,6 @@ export const signOut = () => async (dispatch, getState, { getFirebase }) => {
     const firebase = getFirebase();
     await firebase.auth().signOut();
 
-    history.push(paths.HOME);
     dispatch(signOutSuccess());
   } catch (error) {
     dispatch(showNotification({ type: 'error', message: 'Во время выхода произошла ошибка ' }));
