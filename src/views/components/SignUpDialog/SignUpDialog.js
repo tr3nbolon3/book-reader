@@ -14,7 +14,7 @@ import Input from '@components/Input';
 
 import { composeValidators, required, password, email, isEqual } from '@utils/validate';
 
-import LabeledCheckbox from '@components/LabeledCheckbox';
+// import LabeledCheckbox from '@components/LabeledCheckbox';
 import AbsoluteSpinner from '@UI/AbsoluteSpinner';
 import styles from './SignUpDialog.module.scss';
 
@@ -43,11 +43,11 @@ function SignUpDialog({ isLoading, signUp, isOpen, closeSignUpDialog }) {
                   label="Подтверждение пароля"
                   validate={composeValidators(required(), isEqual(values.password, 'Пароли не совпадают'))}
                 />
-                <LabeledCheckbox
+                {/* <LabeledCheckbox
                   name="checkbox"
                   validate={required('Этот флажок должен быть отмечен')}
                   label="Я согласен с условиями предоставления услуг и политикой конфиденциальности."
-                />
+                /> */}
               </div>
             </DialogContent>
             <DialogActions>

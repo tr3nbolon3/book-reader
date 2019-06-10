@@ -17,8 +17,8 @@ class Reader extends Component {
   bookRendition = null; // set when component did mount
 
   componentDidMount() {
-    // const { book: {  } } = this.props;
-    this.book = ePub(`${window.location.origin}/books/flatland.epub`);
+    const { book } = this.props;
+    this.book = ePub(book.url);
     this.bookRendition = this.book.renderTo('bookViewer', {
       width: '100%',
       flex: 1,
