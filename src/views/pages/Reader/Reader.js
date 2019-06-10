@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { Redirect } from 'react-router-dom';
 import ePub from 'epubjs';
 // import { CircularProgress } from '@material-ui/core';
 import MainLayout from '@layouts/MainLayout';
-import { getBook } from '@ducks/firestore/firestoreSelectors';
+import { getBook, canReadBook } from '@ducks/firestore/firestoreSelectors';
 import AbsoluteSpinner from '@UI/AbsoluteSpinner';
 
 class Reader extends Component {
@@ -38,10 +39,15 @@ class Reader extends Component {
   handlePrev = () => this.bookRendition.prev();
 
   render() {
-    const { isBookReady, hasDelay } = this.state;
     const { handleNext, handlePrev } = this;
+    const { isBookReady, hasDelay } = this.state;
+    const { canRead, book } = this.props;
 
     const isShowProgress = !isBookReady || hasDelay;
+
+    if (!canRead) {
+      return <Redirect to={`/books/${book.id}`} />;
+    }
 
     return (
       <MainLayout mainProps={{ style: { display: 'flex', flexDirection: 'column' } }}>
@@ -71,6 +77,7 @@ class Reader extends Component {
 Reader.propTypes = {
   children: PropTypes.any,
   book: PropTypes.object.isRequired,
+  canRead: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -82,6 +89,7 @@ const mapStateToProps = (state, ownProps) => {
 
   return {
     book: getBook(state, { id }),
+    canRead: canReadBook(state, id),
   };
 };
 

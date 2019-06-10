@@ -1,6 +1,7 @@
 import React from 'react';
 // import PropTypes from 'prop-types';
-import $propTypes from '@prop-types';
+import cn from 'classnames';
+import * as $propTypes from '@prop-types';
 import Card from '@material-ui/core/Card';
 import CardActionArea from '@material-ui/core/CardActionArea';
 import CardMedia from '@material-ui/core/CardMedia';
@@ -10,10 +11,10 @@ import { Tooltip } from '@material-ui/core';
 import styles from './BookCard.module.scss';
 import { getBookAuthorNames } from '@utils';
 
-function BookCard({ cover, name, authors, onClick }) {
+function BookCard({ className, cover, name, authors, onClick }) {
   const authorNames = getBookAuthorNames(authors);
   return (
-    <Card className={styles.root} onClick={onClick}>
+    <Card className={cn(styles.root, className)} onClick={onClick}>
       <Tooltip title={`${name} - ${authorNames}`} placement="top">
         <CardActionArea className={styles.inner}>
           <CardMedia component="img" alt={name} className={styles.image} height="140" image={cover} title={name} />

@@ -4,18 +4,6 @@ import { handleActions, combineActions } from 'redux-actions';
 
 import * as firestoreActions from './firestoreActions';
 
-const isBookLoading = handleActions(
-  {
-    [firestoreActions.fetchBooksRequest]() {
-      return true;
-    },
-    [combineActions(firestoreActions.fetchBooksSuccess, firestoreActions.fetchBooksFailure)]() {
-      return false;
-    },
-  },
-  false,
-);
-
 const isAddingComment = handleActions(
   {
     [firestoreActions.addCommentRequest]() {
@@ -29,7 +17,6 @@ const isAddingComment = handleActions(
 );
 
 export default combineReducers({
-  isBookLoading,
   isAddingComment,
   firestore: firestoreReducer,
 });

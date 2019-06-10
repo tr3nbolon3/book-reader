@@ -11,7 +11,9 @@ import * as paths from '@routes/paths';
 function BookAccessRestrictionDialog({ isOpen, close }) {
   const handleClick = () => {
     close();
-    history.push(paths.SUBSCRIBE);
+    setTimeout(() => {
+      history.push(paths.SUBSCRIBE);
+    }, 0);
   };
 
   return (

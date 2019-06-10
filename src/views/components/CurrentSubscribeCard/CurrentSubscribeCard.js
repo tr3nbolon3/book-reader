@@ -29,7 +29,7 @@ function CurrentSubscribeCard({ user, subscribes }) {
       </div>
       <div className={styles.inner} style={{ backgroundImage }}>
         <div className={styles.name}>{currentSubscribe.name}</div>
-        <div className={styles.period}>до 09.06.2019</div>
+        {/* <div className={styles.period}>до 09.06.2019</div> */}
       </div>
     </Link>
   );

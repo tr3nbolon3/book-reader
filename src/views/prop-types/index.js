@@ -40,7 +40,9 @@ export const bookAuthor = {
 };
 
 export const bookMeta = {
-  name: PropTypes.string.isRequired,
+  userId: PropTypes.string,
+  bookId: PropTypes.number,
+  name: PropTypes.string,
   readPercent: PropTypes.number,
 };
 
@@ -66,12 +68,14 @@ export const book = {
   genres: PropTypes.arrayOf(PropTypes.shape(genre)),
   accessRestrictionId: PropTypes.oneOf([accessRestrictions.FREE, accessRestrictions.SUBSCRIBE]),
   comments: PropTypes.arrayOf(PropTypes.shape(comment)).isRequired,
+  meta: PropTypes.shape(bookMeta),
 };
 
 export default {
   icon,
   user,
   book,
+  bookMeta,
   comment,
   bookAuthor,
   genre,

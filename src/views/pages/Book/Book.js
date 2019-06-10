@@ -5,33 +5,25 @@ import cn from 'classnames';
 import { connect } from 'react-redux';
 // import * as appSelectors from '@ducks/app/appSelectors';
 import * as appActions from '@ducks/app/appActions';
+import * as firestoreActions from '@ducks/firestore/firestoreActions';
 
 import MainLayout from '@layouts/MainLayout';
 import Container from '@UI/Container';
 
 import { Typography, Button, Chip } from '@material-ui/core';
 
-import { getBook } from '@ducks/firestore/firestoreSelectors';
+import { getBook, canReadBook } from '@ducks/firestore/firestoreSelectors';
 import { getIsSignedIn, getUser } from '@ducks/firebase/firebaseSelectors';
 import AddBookCommentForm from '@components/AddBookCommentForm';
 
 import BookComments from '@components/BookComments';
-// import * as paths from '@routes/paths';
-import accessRestrictions from '@constants/accessRestrictions';
-import subscribes from '@constants/subscribes';
 
 import styles from './Book.module.scss';
 import Description from './Description';
 import { history, getBookAuthorNames } from '@utils/';
 
-function Book({ book, isSignedIn, user, openBookAccessRestrictionDialog }) {
-  const { id, accessRestrictionId, cover, authors, name, description, comments, genres } = book;
-  const canRead = accessRestrictionId === accessRestrictions.FREE || user.currentSubscribeId !== subscribes.STANDARD;
-  console.log('book', book);
-  console.log('accessRestrictionId', accessRestrictionId);
-  console.log('user.currentSubscribeId', user.currentSubscribeId);
-  console.log('canRead', canRead);
-  // const backgroundImage = `url(${cover})`;
+function Book({ book, isSignedIn, canRead, deleteBookFromMyBooks, addBookToMyBooks, openBookAccessRestrictionDialog }) {
+  const { id, cover, authors, name, description, comments, genres, meta } = book;
 
   const renderLeft = (
     <div className={styles.left}>
@@ -46,10 +38,28 @@ function Book({ book, isSignedIn, user, openBookAccessRestrictionDialog }) {
         >
           Читать
         </Button>
-        {isSignedIn && (
-          <Button className={styles.addBtn} size="large" color="primary" variant="contained">
+        {isSignedIn && !meta.isInLibrary && (
+          <Button
+            size="large"
+            color="primary"
+            variant="contained"
+            className={styles.addBtn}
+            onClick={() => addBookToMyBooks(id)}
+          >
             На полку
             <div className={styles.addBtnPlus}>+</div>
+          </Button>
+        )}
+        {isSignedIn && meta.isInLibrary && (
+          <Button
+            size="large"
+            color="secondary"
+            variant="contained"
+            className={styles.deleteBtn}
+            onClick={() => deleteBookFromMyBooks(id)}
+          >
+            Удалить с полки
+            <div className={styles.deleteBtnMinus}>-</div>
           </Button>
         )}
       </div>
@@ -95,6 +105,9 @@ Book.propTypes = {
   book: PropTypes.shape($propTypes.book),
   user: PropTypes.shape($propTypes.user),
   isSignedIn: PropTypes.bool.isRequired,
+  canRead: PropTypes.bool.isRequired,
+  addBookToMyBooks: PropTypes.func.isRequired,
+  deleteBookFromMyBooks: PropTypes.func.isRequired,
   openBookAccessRestrictionDialog: PropTypes.func.isRequired,
 };
 
@@ -108,11 +121,12 @@ const mapStateToProps = (state, ownProps) => {
   return {
     book: getBook(state, { id }),
     user: getUser(state),
+    canRead: canReadBook(state, id),
     isSignedIn: getIsSignedIn(state),
   };
 };
 
-const mapDispatchToProps = { ...appActions };
+const mapDispatchToProps = { ...appActions, ...firestoreActions };
 
 export default connect(
   mapStateToProps,

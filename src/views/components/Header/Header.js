@@ -3,8 +3,8 @@ import PropTypes from 'prop-types';
 import * as $propTypes from '@prop-types';
 import { connect } from 'react-redux';
 
-import { MenuItem, AppBar, Toolbar, Button, IconButton, InputBase, Typography, Popover } from '@material-ui/core';
-import { Search as SearchIcon } from '@material-ui/icons';
+import { MenuItem, AppBar, Toolbar, Button, IconButton, Typography, Popover } from '@material-ui/core';
+// import { Search as SearchIcon } from '@material-ui/icons';
 
 import * as appActions from '@ducks/app/appActions';
 import * as sessionActions from '@ducks/session/sessionActions';
@@ -117,7 +117,7 @@ class Header extends React.Component {
             <Logo />
           </Link>
           <div className={styles.toolbarLeft}>
-            <div className={styles.search}>
+            {/* <div className={styles.search}>
               <div className={styles.searchIcon}>
                 <SearchIcon />
               </div>
@@ -128,7 +128,7 @@ class Header extends React.Component {
                   input: styles.inputInput,
                 }}
               />
-            </div>
+            </div> */}
             {/* <div className={styles.grow}> */}
             <Link to={paths.BOOKS}>
               <Typography color="inherit" noWrap>

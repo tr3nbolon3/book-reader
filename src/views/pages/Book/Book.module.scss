@@ -18,6 +18,8 @@
 .image {
   width: 216px;
   height: 288px;
+  min-width: 216px;
+  min-height: 288px;
   margin-bottom: 16px;
   object-fit: contain;
   box-shadow: 0 0 10px -4px white;
@@ -40,25 +42,37 @@
   margin-bottom: 16px!important;
 }
 
-.addBtn {
+
+
+.addBtn,
+.deleteBtn {
   flex: 1;
   overflow: hidden;
   position: relative;
   padding-right: 60px!important;
+}
 
-  &Plus {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: #1c2e94;
-    position: absolute;
-    margin-left: 16px;
-    width: 40px;
-    height: 100%;
-    top: 0;
-    bottom: 0;
-    right: 0;
-  }
+.deleteBtn {
+  font-size: 12px!important;
+}
+
+.addBtnPlus,
+.deleteBtnMinus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #1c2e94;
+  position: absolute;
+  margin-left: 16px;
+  width: 40px;
+  height: 100%;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}
+
+.deleteBtnMinus {
+  background-color: #ab0d54;
 }
 
 .author {

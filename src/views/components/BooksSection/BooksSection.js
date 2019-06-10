@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import $propTypes from '@prop-types';
+import * as $propTypes from '@prop-types';
 import BookCard from '@components/BookCard';
 import history from '@utils/history';
 import * as paths from '@routes/paths';
@@ -18,7 +18,12 @@ function BooksSection({ title, books }) {
       )}
       <div className={styles.books}>
         {books.map(book => (
-          <BookCard key={book.id} {...book} onClick={() => history.push(`${paths.BOOKS}/${book.id}`)} />
+          <BookCard
+            {...book}
+            key={book.id}
+            className={styles.booksBook}
+            onClick={() => history.push(`${paths.BOOKS}/${book.id}`)}
+          />
         ))}
       </div>
     </div>

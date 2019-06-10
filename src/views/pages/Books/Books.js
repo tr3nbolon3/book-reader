@@ -1,24 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import $propTypes from '@prop-types';
+import * as $propTypes from '@prop-types';
 import { connect } from 'react-redux';
-// import * as appSelectors from '@ducks/app/appSelectors';
+
 import * as appActions from '@ducks/app/appActions';
 
 import MainLayout from '@layouts/MainLayout';
 import Container from '@UI/Container';
-// import BookCard from '@components/BookCard';
-import BooksSection from '@components/BooksSection';
-import { getOrderedBooks } from '@ducks/firestore/firestoreSelectors';
-// import history from '@utils/history';
 
-// import * as paths from '@routes/paths';
+import BooksSection from '@components/BooksSection';
+import { getOrderedBooksWithMeta } from '@ducks/firestore/firestoreSelectors';
 
 function Books({ books }) {
   return (
     <MainLayout>
-      <Container style={{ padding: '40px 0' }}>
-        <BooksSection title="Бестселлеры" books={books} />
+      <Container style={{ paddingTop: 40, paddingBottom: 40 }}>
+        <BooksSection title="Каталог книг" books={books} />
       </Container>
     </MainLayout>
   );
@@ -33,7 +30,7 @@ Books.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  books: getOrderedBooks(state),
+  books: getOrderedBooksWithMeta(state),
 });
 
 const mapDispatchToProps = { ...appActions };
