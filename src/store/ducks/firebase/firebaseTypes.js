@@ -1,2 +1,3 @@
-// export const FIRST_ACTION = 'firebase/FIRST_ACTION';
-// export const SECOND_ACTION = 'firebase/SECOND_ACTION';
+// export const UPLOAD_USER_AVATAR_REQUEST = 'firebase/UPLOAD_USER_AVATAR_REQUEST';
+// export const UPLOAD_USER_AVATAR_SUCCESS = 'firebase/UPLOAD_USER_AVATAR_SUCCESS';
+// export const UPLOAD_USER_AVATAR_FAILURE = 'firebase/UPLOAD_USER_AVATAR_FAILURE';

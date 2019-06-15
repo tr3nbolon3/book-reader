@@ -19,6 +19,7 @@ import getPureOrderedComments from './selectors/getPureOrderedComments';
 import getOrderedBooksMeta from './selectors/getOrderedBooksMeta';
 import getOrderedBooksWithMeta from './selectors/getOrderedBooksWithMeta';
 import canReadBook from './selectors/canReadBook';
+import getIsUploadingUserAvatar from './selectors/getIsUploadingUserAvatar';
 
 export {
   getBook,
@@ -42,6 +43,7 @@ export {
   getOrderedBooksMeta,
   getOrderedBooksWithMeta,
   canReadBook,
+  getIsUploadingUserAvatar,
 };
 
 export default {
@@ -66,4 +68,5 @@ export default {
   getOrderedBooksMeta,
   getOrderedBooksWithMeta,
   canReadBook,
+  getIsUploadingUserAvatar,
 };

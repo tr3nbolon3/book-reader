@@ -1,8 +1,12 @@
+import React from 'react';
+import { Button } from '@material-ui/core';
 import { createAction } from 'redux-actions';
 import { getUser } from '@ducks/firebase/firebaseSelectors';
 import { showNotification } from '@ducks/app/appActions';
+import * as paths from '@routes/paths';
 import * as firestoreTypes from './firestoreTypes';
 import getOrderedBooksMeta from './selectors/getOrderedBooksMeta';
+import { history } from '@utils/';
 
 export const addCommentRequest = createAction(firestoreTypes.ADD_COMMENT_REQUEST);
 export const addCommentSuccess = createAction(firestoreTypes.ADD_COMMENT_SUCCESS);
@@ -79,8 +83,20 @@ export const addBookToMyBooks = bookId => async (dispatch, getState, { getFirest
       });
     }
 
+    const notificationAction = () => (
+      <Button size="small" color="inherit" onClick={() => history.push(paths.MY_BOOKS)}>
+        Посмотреть
+      </Button>
+    );
+
     dispatch(addBookToMyBooksSuccess());
-    dispatch(showNotification({ type: 'success', message: 'Книга добавлена на вашу полку' }));
+    dispatch(
+      showNotification({
+        type: 'success',
+        message: 'Книга добавлена на вашу полку',
+        action: notificationAction,
+      }),
+    );
   } catch (e) {
     // eslint-disable-next-line
     console.log(e);
@@ -119,5 +135,53 @@ export const deleteBookFromMyBooks = bookId => async (dispatch, getState, { getF
     console.log(e);
     dispatch(showNotification({ type: 'error', message: 'Что-то пошло нетак. Попробуйте снова' }));
     dispatch(deleteBookFromMyBooksFailure());
+  }
+};
+
+export const updateUserRequest = createAction(firestoreTypes.UPDATE_USER_REQUEST);
+export const updateUserSuccess = createAction(firestoreTypes.UPDATE_USER_SUCCESS);
+export const updateUserFailure = createAction(firestoreTypes.UPDATE_USER_FAILURE);
+
+export const updateUser = formValues => async (dispatch, getState, { getFirestore }) => {
+  dispatch(updateUserRequest());
+  try {
+    const { id: userId, firstName, lastName } = formValues;
+
+    const firestore = getFirestore();
+    await firestore.doc(`users/${userId}`).update({ ...formValues, fullName: `${firstName} ${lastName}` });
+
+    dispatch(updateUserSuccess());
+    dispatch(showNotification({ type: 'success', message: 'Данные обновлены' }));
+  } catch (e) {
+    // eslint-disable-next-line
+    console.log(e);
+    dispatch(showNotification({ type: 'error', message: 'Что-то пошло нетак. Попробуйте снова' }));
+    dispatch(updateUserFailure());
+  }
+};
+
+export const uploadUserAvatarRequest = createAction(firestoreTypes.UPLOAD_USER_AVATAR_REQUEST);
+export const uploadUserAvatarSuccess = createAction(firestoreTypes.UPLOAD_USER_AVATAR_SUCCESS);
+export const uploadUserAvatarFailure = createAction(firestoreTypes.UPLOAD_USER_AVATAR_FAILURE);
+
+export const uploadUserAvatar = base64Avatar => async (dispatch, getState, { getFirestore }) => {
+  dispatch(uploadUserAvatarRequest());
+  try {
+    const firestore = getFirestore();
+    const state = getState();
+
+    const user = getUser(state);
+
+    firestore.doc(`users/${user.id}`).update({
+      avatarUrl: base64Avatar,
+    });
+
+    dispatch(uploadUserAvatarSuccess());
+    dispatch(showNotification({ type: 'success', message: 'Аватар обновлен' }));
+  } catch (e) {
+    // eslint-disable-next-line
+    console.log(e);
+    dispatch(showNotification({ type: 'error', message: 'Что-то пошло нетак. Попробуйте снова' }));
+    dispatch(uploadUserAvatarFailure());
   }
 };

@@ -16,7 +16,33 @@ const isAddingComment = handleActions(
   false,
 );
 
+const isUserUpdating = handleActions(
+  {
+    [firestoreActions.updateUserRequest]() {
+      return true;
+    },
+    [combineActions(firestoreActions.updateUserSuccess, firestoreActions.updateUserFailure)]() {
+      return false;
+    },
+  },
+  false,
+);
+
+const isUploadingUserAvatar = handleActions(
+  {
+    [firestoreActions.uploadUserAvatarRequest]() {
+      return true;
+    },
+    [combineActions(firestoreActions.uploadUserAvatarFailure, firestoreActions.uploadUserAvatarSuccess)]() {
+      return false;
+    },
+  },
+  false,
+);
+
 export default combineReducers({
+  isUserUpdating,
   isAddingComment,
+  isUploadingUserAvatar,
   firestore: firestoreReducer,
 });
