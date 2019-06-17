@@ -1,0 +1,17 @@
+.root {
+  width: 500px;
+  height: 500px;
+}
+
+.content {
+  display: flex;
+}
+
+.avatar {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%;
+  overflow: hidden;
+  position: relative;
+  margin-left: 24px;
+}

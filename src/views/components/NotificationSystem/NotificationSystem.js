@@ -5,11 +5,12 @@ import { withSnackbar } from 'notistack';
 import { getAppNotification } from '@ducks/app/appSelectors';
 import { IconButton } from '@material-ui/core';
 import { Close as CloseIcon } from '@material-ui/icons';
+import { noop } from '@utils/';
 
 class NotificationSystem extends Component {
   componentDidUpdate = () => {
     const {
-      notification: { type: variant, message },
+      notification: { type: variant, message, action = noop },
       enqueueSnackbar,
     } = this.props;
 
@@ -19,18 +20,21 @@ class NotificationSystem extends Component {
         vertical: 'top',
         horizontal: 'right',
       },
-      action: this.renderActions,
+      action: this.renderActions(action),
     });
   };
 
-  renderActions = key => (
-    <IconButton
-      onClick={() => {
-        this.props.closeSnackbar(key);
-      }}
-    >
-      <CloseIcon style={{ color: 'white' }} />
-    </IconButton>
+  renderActions = action => key => (
+    <React.Fragment>
+      {action(key)}
+      <IconButton
+        onClick={() => {
+          this.props.closeSnackbar(key);
+        }}
+      >
+        <CloseIcon style={{ color: 'white' }} />
+      </IconButton>
+    </React.Fragment>
   );
 
   // eslint-disable-next-line

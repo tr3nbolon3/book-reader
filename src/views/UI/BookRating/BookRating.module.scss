@@ -1,0 +1,32 @@
+.root {
+  display: flex;
+  align-items: center;
+}
+
+.stars {
+  background-image: url(./empty-star.svg);
+  background-repeat: repeat-x;
+  background-size: 20px 20px;
+  width: 100px;
+  height: 20px;
+
+  &Inner {
+    background: url(./filled-star.svg);
+    background-repeat: repeat-x;
+    height: 100%;
+    background-size: inherit;
+  }
+}
+
+.rate {
+  color: #000;
+  font-wight: bold;
+  font-style: italic;
+  margin-left: 4px;
+}
+
+.readerCount {
+  margin-left: 20px;
+  font-size: 12px;
+  color: #7c7f84;
+}

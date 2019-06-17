@@ -10,6 +10,10 @@ export const getIsUserLoaded = state => getIsAuthLoaded(state) && getIsProfileLo
 //   (isAuthLoaded, isProfileLoaded) => isAuthLoaded && isProfileLoaded,
 // );
 
+// const getCustomFields = state => state.firebaseCustom;
+
+// export const getIsUploadingUserAvatar = state => getCustomFields(state).isUploadingUserAvatar;
+
 export const getIsSignedIn = state => !state.firebase.auth.isEmpty;
 
 export const getUser = state => {

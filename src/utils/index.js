@@ -7,8 +7,20 @@ import getBookAuthorNames from './getBookAuthorNames';
 import cleanObject from './cleanObject';
 import sortDesc from './sortDesc';
 import sortAsc from './sortAsc';
+import percent from './percent';
 
-export { noop, upperFirst, history, getDisplayName, cutText, getBookAuthorNames, cleanObject, sortDesc, sortAsc };
+export {
+  percent,
+  noop,
+  upperFirst,
+  history,
+  getDisplayName,
+  cutText,
+  getBookAuthorNames,
+  cleanObject,
+  sortDesc,
+  sortAsc,
+};
 
 export default {
   noop,
@@ -20,4 +32,5 @@ export default {
   cleanObject,
   sortDesc,
   sortAsc,
+  percent,
 };

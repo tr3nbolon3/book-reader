@@ -43,6 +43,8 @@ export const bookMeta = {
   userId: PropTypes.string,
   bookId: PropTypes.number,
   name: PropTypes.string,
+  isInLibrary: PropTypes.bool,
+  rating: PropTypes.number,
   readPercent: PropTypes.number,
 };
 
@@ -58,6 +60,11 @@ export const subscribe = {
   cost: PropTypes.number.isRequired,
 };
 
+export const rating = {
+  score: PropTypes.number,
+  votes: PropTypes.number,
+};
+
 export const book = {
   id: numberOrString.isRequired,
   url: PropTypes.string.isRequired,
@@ -69,6 +76,7 @@ export const book = {
   accessRestrictionId: PropTypes.oneOf([accessRestrictions.FREE, accessRestrictions.SUBSCRIBE]),
   comments: PropTypes.arrayOf(PropTypes.shape(comment)).isRequired,
   meta: PropTypes.shape(bookMeta),
+  rating: PropTypes.shape(rating),
 };
 
 export default {
@@ -80,4 +88,5 @@ export default {
   bookAuthor,
   genre,
   subscribe,
+  rating,
 };

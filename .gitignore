@@ -8,6 +8,9 @@
 # testing
 /coverage
 
+# reader
+/src/views/pages/Reader/reader/
+
 # production
 /build
 

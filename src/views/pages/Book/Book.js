@@ -18,12 +18,16 @@ import AddBookCommentForm from '@components/AddBookCommentForm';
 
 import BookComments from '@components/BookComments';
 
+import BookRating from '@UI/BookRating';
+import Rating from '@UI/Rating';
+import getIsVotingBook from '@ducks/firestore/selectors/getIsVotingBook';
 import styles from './Book.module.scss';
 import Description from './Description';
 import { history, getBookAuthorNames } from '@utils/';
 
-function Book({ book, isSignedIn, canRead, deleteBookFromMyBooks, addBookToMyBooks, openBookAccessRestrictionDialog }) {
+function Book({ book, isVotingBook, isSignedIn, canRead, ...other }) {
   const { id, cover, authors, name, description, comments, genres, meta } = book;
+  const { openBookAccessRestrictionDialog, deleteBookFromMyBooks, addBookToMyBooks, setBookRating } = other;
 
   const renderLeft = (
     <div className={styles.left}>
@@ -62,6 +66,13 @@ function Book({ book, isSignedIn, canRead, deleteBookFromMyBooks, addBookToMyBoo
             <div className={styles.deleteBtnMinus}>-</div>
           </Button>
         )}
+        {isSignedIn && (
+          <Rating
+            rating={meta.rating}
+            isVotingBook={isVotingBook}
+            setRating={newRating => setBookRating({ bookId: id, rating: newRating })}
+          />
+        )}
       </div>
     </div>
   );
@@ -75,6 +86,9 @@ function Book({ book, isSignedIn, canRead, deleteBookFromMyBooks, addBookToMyBoo
         <Typography className={cn(styles.name, styles.headerText)} variant="headline" paragraph>
           {name}
         </Typography>
+        <div style={{ marginBottom: 20 }}>
+          <BookRating rating={book.rating} />
+        </div>
         <div className={styles.genres}>
           {genres.map(({ id: genreId, name: genreName }) => (
             <Chip key={genreId} variant="default" label={genreName} classes={{ root: styles.genresGenre }} />
@@ -109,6 +123,8 @@ Book.propTypes = {
   addBookToMyBooks: PropTypes.func.isRequired,
   deleteBookFromMyBooks: PropTypes.func.isRequired,
   openBookAccessRestrictionDialog: PropTypes.func.isRequired,
+  setBookRating: PropTypes.func.isRequired,
+  isVotingBook: PropTypes.bool.isRequired,
 };
 
 const mapStateToProps = (state, ownProps) => {
@@ -123,6 +139,7 @@ const mapStateToProps = (state, ownProps) => {
     user: getUser(state),
     canRead: canReadBook(state, id),
     isSignedIn: getIsSignedIn(state),
+    isVotingBook: getIsVotingBook(state),
   };
 };
 

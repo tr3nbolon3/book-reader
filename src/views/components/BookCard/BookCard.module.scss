@@ -1,7 +1,14 @@
 .root {
+  display: flex;
   // width: 100%;
   width: 154px;
   margin: 0 auto;
+  margin-top: 20px;
+  position: relative;
+}
+
+.card {
+
 }
 
 .inner {
@@ -10,7 +17,12 @@
   flex-direction: column;
   justify-content: flex-start!important;
   align-items: stretch!important;
-  position: relative;
+}
+
+.rating {
+  position: absolute;
+  bottom: 100%;
+  left: 0;
 }
 
 .bySubscribe {
