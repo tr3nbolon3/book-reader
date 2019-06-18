@@ -1,0 +1,32 @@
+.root {
+  height: 100%;
+  width: 100%;
+  position: relative;
+}
+
+.hover {
+  width: 90%;
+  height: 40px;
+  position: absolute;
+  top: 0;
+  left: 50%;
+  z-index: 100;
+  transform: translateX(-50%);
+}
+
+.headerWrapper {
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 200;
+  opacity: 0;
+  transform: translateY(-100%);
+  transition: .3s ease;
+  transition-property: transform, opacity;
+
+  &Visible {
+    opacity: 1;
+    transform: translateY(0%);
+  }
+}
