@@ -15,7 +15,7 @@ export const uploadUserAvatar = base64Avatar => async (dispatch, getState, { get
 
     const user = getUser(state);
 
-    await firestore.doc(`users/${user.id}`).update({
+    await firestore.doc(`users/${user.uid}`).update({
       avatarUrl: base64Avatar,
     });
 

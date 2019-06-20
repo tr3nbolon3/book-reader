@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import * as $propTypes from '@prop-types';
-import cn from 'classnames';
+// import cn from 'classnames';
 // import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 // import * as appSelectors from '@ducks/app/appSelectors';
@@ -18,7 +18,7 @@ import Container from '@UI/Container';
 
 import history from '@utils/history';
 import * as paths from '@routes/paths';
-import FeedbackSlider from '@components/FeedbackSlider';
+// import FeedbackSlider from '@components/FeedbackSlider';
 import * as firestoreActions from '@ducks/firestore/firestoreActions';
 import styles from './Home.module.scss';
 
@@ -61,19 +61,19 @@ const renderQuote = (
   </div>
 );
 
-const renderFeedback = ops => (
-  <div className={cn(styles.section, styles.feedback)}>
-    <Container>
-      <div className={styles.sectionHeader}>
-        <Typography className={styles.sectionTitle} variant="h2" paragraph>
-          Отзывы
-        </Typography>
-        <Typography variant="subtitle2">Что говорят о bambook</Typography>
-      </div>
-      <FeedbackSlider user={ops.user} />
-    </Container>
-  </div>
-);
+// const renderFeedback = ops => (
+//   <div className={cn(styles.section, styles.feedback)}>
+//     <Container>
+//       <div className={styles.sectionHeader}>
+//         <Typography className={styles.sectionTitle} variant="h2" paragraph>
+//           Отзывы
+//         </Typography>
+//         <Typography variant="subtitle2">Что говорят о bambook</Typography>
+//       </div>
+//       <FeedbackSlider user={ops.user} />
+//     </Container>
+//   </div>
+// );
 
 const renderBenefits = (
   <div className={styles.section}>
@@ -113,13 +113,13 @@ const renderBenefits = (
   </div>
 );
 
-function Home({ user }) {
+function Home() {
   return (
     <MainLayout>
       {renderHero}
       {renderQuote}
       {renderBenefits}
-      {renderFeedback({ user })}
+      {/* {renderFeedback({ user })} */}
     </MainLayout>
   );
 }

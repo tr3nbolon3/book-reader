@@ -7,7 +7,7 @@ const getOrderedBooksWithMeta = createSelector(
   [getOrderedBooks, getOrderedBooksMeta, getUser],
   (books, booksMeta, user) =>
     books.map(book => {
-      const isThisUser = userId => userId === user.id;
+      const isThisUser = userId => userId === user.uid;
       const isThisBook = bookId => bookId === book.id;
 
       const findCb = ({ userId, bookId }) => isThisUser(userId) && isThisBook(bookId);

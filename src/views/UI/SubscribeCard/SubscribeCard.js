@@ -10,6 +10,7 @@ import Typography from '@material-ui/core/Typography';
 import subscribes from '@constants/subscribes';
 import subscribeColors from '@constants/subscribeColors';
 import * as appActions from '@ducks/app/appActions';
+import * as firestoreActions from '@ducks/firestore/firestoreActions';
 import { getIsSignedIn } from '@ducks/firebase/firebaseSelectors';
 import { Chip } from '@material-ui/core';
 import styles from './SubscribeCard.module.scss';
@@ -26,7 +27,7 @@ const subscribeTexts = {
   [subscribes.SILVER]: props => `Подписка ${props.name} за ${props.cost} рублей (на  3 месяца)`,
 };
 
-function SubscribeCard({ subscribe, isSignedIn, openSignUpDialog }) {
+function SubscribeCard({ subscribe, isSignedIn, openSignUpDialog, updateUser }) {
   const { id, name, cost } = subscribe;
 
   const renderSection1 = (
@@ -66,7 +67,12 @@ function SubscribeCard({ subscribe, isSignedIn, openSignUpDialog }) {
   const renderSection2 = (
     <div className={styles.section2}>
       {isSignedIn && (
-        <Button variant="contained" type="submit" color="primary">
+        <Button
+          variant="contained"
+          type="submit"
+          color="primary"
+          onClick={() => updateUser({ currentSubscribeId: id })}
+        >
           Оформить подписку
         </Button>
       )}
@@ -99,11 +105,12 @@ SubscribeCard.propTypes = {
   subscribe: PropTypes.shape($propTypes.subscribe),
   isSignedIn: PropTypes.bool.isRequired,
   openSignUpDialog: PropTypes.func.isRequired,
+  updateUser: PropTypes.func.isRequired,
 };
 
 export default connect(
   state => ({
     isSignedIn: getIsSignedIn(state),
   }),
-  appActions,
+  { ...appActions, ...firestoreActions },
 )(SubscribeCard);

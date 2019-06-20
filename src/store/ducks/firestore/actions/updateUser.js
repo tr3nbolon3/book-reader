@@ -1,5 +1,6 @@
 import { createAction } from 'redux-actions';
 import { showNotification } from '@ducks/app/appActions';
+import { getUser } from '@ducks/firebase/firebaseSelectors';
 import * as firestoreTypes from '../firestoreTypes';
 
 export const updateUserRequest = createAction(firestoreTypes.UPDATE_USER_REQUEST);
@@ -9,7 +10,8 @@ export const updateUserFailure = createAction(firestoreTypes.UPDATE_USER_FAILURE
 export const updateUser = formValues => async (dispatch, getState, { getFirestore }) => {
   dispatch(updateUserRequest());
   try {
-    const { id: userId, firstName, lastName } = formValues;
+    const { firstName, lastName } = formValues;
+    const { uid: userId } = getUser(getState());
 
     const firestore = getFirestore();
     await firestore.doc(`users/${userId}`).update({ ...formValues, fullName: `${firstName} ${lastName}` });

@@ -36,3 +36,10 @@ export {
   uploadUserAvatarFailure,
   uploadUserAvatar,
 } from './actions/uploadUserAvatar';
+
+export {
+  setBookLocationRequest,
+  setBookLocationSuccess,
+  setBookLocationFailure,
+  setBookLocation,
+} from './actions/setBookLocation';

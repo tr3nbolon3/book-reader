@@ -4,6 +4,7 @@ import * as $propTypes from '@prop-types';
 import { connect } from 'react-redux';
 
 import { MenuItem, AppBar, Toolbar, Button, IconButton, Typography, Popover } from '@material-ui/core';
+import { ArrowBack } from '@material-ui/icons';
 // import { Search as SearchIcon } from '@material-ui/icons';
 
 import * as appActions from '@ducks/app/appActions';
@@ -113,6 +114,11 @@ class Header extends React.Component {
     return (
       <AppBar position="static" color="inherit" classes={{ root: styles.root }}>
         <Toolbar className={styles.toolbar} color="inherit">
+          {this.props.withBackBtn && (
+            <IconButton color="inherit" style={{ marginRight: 20 }} onClick={() => history.goBack()}>
+              <ArrowBack />
+            </IconButton>
+          )}
           <Link to={paths.HOME}>
             <Logo />
           </Link>
@@ -144,11 +150,16 @@ class Header extends React.Component {
 }
 
 Header.propTypes = {
+  withBackBtn: PropTypes.bool,
+};
+
+Header.propTypes = {
   user: PropTypes.shape($propTypes.user),
   openSignUpDialog: PropTypes.func.isRequired,
   openSignInDialog: PropTypes.func.isRequired,
   signOut: PropTypes.func.isRequired,
   isSignedIn: PropTypes.bool.isRequired,
+  withBackBtn: PropTypes.bool,
 };
 
 const mapStateToProps = state => ({

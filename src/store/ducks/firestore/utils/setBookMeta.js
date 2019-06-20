@@ -10,7 +10,7 @@ export default async function setBookMeta(ops) {
   const booksMeta = getOrderedBooksMeta(state);
 
   const existedBookMeta = booksMeta.find(bm => {
-    const isThisUser = bm.userId === user.id;
+    const isThisUser = bm.userId === user.uid;
     const isThisBook = bm.bookId === bookId;
     return isThisUser && isThisBook;
   });
@@ -23,7 +23,7 @@ export default async function setBookMeta(ops) {
   } else {
     result = await firestore.collection('booksMeta').add({
       bookId,
-      userId: user.id,
+      userId: user.uid,
       ...data,
     });
   }
