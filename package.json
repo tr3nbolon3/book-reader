@@ -38,7 +38,7 @@
     "reselect": "^4.0.0",
     "swiper": "^4.5.0",
     "typeface-roboto": "0.0.54",
-    "validator": "^10.11.0"
+    "validator": "^13.7.0"
   },
   "scripts": {
     "start": "react-app-rewired start",
